@@ -1,34 +1,77 @@
+:root {
+    --green : #7aa266;
+    --white : #f8f9fa;
+    --blue : #d9e3f1;
+    --cream : #f1e7d9;
+    --grey : #8c939c;
+}
+
+body {
+    margin: 0 auto;
+    background-color: var(--blue)!important;
+}
+
+/******* HOOMEE ******/
+
 /* Navbar */
 .navbar {
-    height: 10%!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* Fixed height for navbar */
+    background-color: var(--white);
+    width: 100%; /* Stretch across the screen */
+    top: 0;
+    font-size: 2.5rem;
 }
 
 .navbar-nav {
+    display: flex;
+    flex-direction: row;
     gap: 15%; 
-    width: auto;
+    align-items: center;
 }
 
 
 .navbar-icon {
     cursor: pointer;
-    font-size: 1.5rem;
     transition: color 0.2s ease-in-out;
 }
 
-.navbar-icon:hover {
-    color: #0c7f59!important; 
+a:hover {
+    color: var(--green)!important; 
 }
 
 .active-icon {
     cursor: pointer;
-    font-size: 1.5rem;
     transition: color 0.2s ease-in-out;
-    color: #0c7f59!important;
-    border-bottom: 4px solid #0c7f59;
+    color: var(--green)!important;
+    border-bottom: 4px solid var(--green);
 }
 
 #search-bar {
-    width: 300px!important; 
+    width: 300px;
+    flex-wrap: nowrap;
+    display: flex;
+    gap: 5px;
+}
+
+.input-group input {
+    flex: 1;
+}
+
+.input-group button {
+    flex-shrink: 0;
+}
+
+/* Welcome bit */
+.welcome-tab {
+    background-color: var(--white);
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
 }
 
 /* twinkle twinkle little star oh i now wont have to wonder how you are */
@@ -60,9 +103,88 @@
 /* Posts Tab */
 
 .post-tab {
-    background-color: #f8f9fa;
     border-top-left-radius: 5%;
     border-top-right-radius: 5%;
-    box-shadow: #adaeae;
+    background-color: var(--blue);
 }
 
+.bookmark {
+    display: flex;
+    justify-content: flex-end;  
+    color: var(--grey);
+}
+
+.bookmark i {
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.2s ease-in-out;
+}
+
+.bookmark i:hover {
+    color: var(--green); /* Highlight color on hover */
+}
+
+/* Write a Post Page */
+.pretty-bg {
+    margin-top: 0!important;
+    background-color: var(--white);
+}
+
+.write-post {
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    background-color: var(--blue)!important;
+}
+.write-post label {
+    font-size: 2vmax;
+
+}
+
+.title-div, .company-div, .rating-div {
+    height: 1fr;
+}
+
+.description-div {
+    height: 4fr;
+}
+
+.small-input input {
+    height: 4.5vmax!important;
+    border-radius: 5px;
+    border: 1px solid var(--grey);
+}
+
+.big-input input {
+    height: 20vmax!important;
+    border-radius: 5px;
+    border: 1px solid var(--grey);
+}
+
+input::placeholder {
+    color: var(--grey); 
+    vertical-align: top!important;
+    font-style: italic; /* Make text italic */
+    font-size: 1.3rem; /* Adjust text size */
+    opacity: 0.8; 
+}
+
+.post-btn {
+    height: 4vmax;
+    color: var(--cream);
+    font-size: 2vmax;
+    font-weight: bold;
+    background-color: var(--green)!important;
+}
+
+/* Profile */
+
+.profile-div {
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    background-color: var(--blue)!important;
+}
+
+.posted, .bookmarked {
+    border-radius: 2px;
+    border: 2px solid var(--grey);
+}
