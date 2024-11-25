@@ -4,6 +4,7 @@
     --blue : #d9e3f1;
     --cream : #f1e7d9;
     --grey : #8c939c;
+    --red : #9f4a39;
 }
 
 body {
@@ -22,7 +23,7 @@ body {
     background-color: var(--white);
     width: 100%; /* Stretch across the screen */
     top: 0;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
 .navbar-nav {
@@ -79,6 +80,10 @@ a:hover {
 .star {
     font-size: 50px;
 }
+
+.star-rating {
+    font-size: 50px;
+}
    
 .one {
     color: #de1313;
@@ -89,15 +94,15 @@ a:hover {
 }
    
 .three {
-    color: #e7e11d;
+    color: #ecb428;
 }
    
 .four {
-    color: #fcff2f;
+    color: #fdff6e;
 }
    
 .five {
-    color: #6bde13;
+    color: #93ea50;
 }
 
 /* Posts Tab */
@@ -169,14 +174,18 @@ input::placeholder {
 }
 
 .post-btn {
-    height: 4vmax;
-    color: var(--cream);
-    font-size: 2vmax;
+    color: var(--cream)!important;
+    font-size: 1.5vmax;
     font-weight: bold;
     background-color: var(--green)!important;
 }
 
 /* Profile */
+
+.logout {
+    text-decoration: none!important;
+    text-transform: uppercase;
+}
 
 .profile-div {
     border-top-left-radius: 5%;
@@ -186,5 +195,80 @@ input::placeholder {
 
 .posted, .bookmarked {
     border-radius: 2px;
-    border: 2px solid var(--grey);
+    border: 4px solid var(--grey);
+}
+
+.user-pic {
+    width: 70%!important;
+    margin: 0 auto!important;
+    border-radius: 50%;
+    border: 4px solid var(--grey);
+}
+
+.edit-btn {
+    color: var(--cream)!important;
+    font-weight: bold;
+    background-color: var(--green)!important;
+}
+
+.delete-btn {
+    color: var(--cream)!important;
+    font-weight: bold;
+    background-color: var(--red)!important;
+}
+
+/* Edit form */
+
+.upload {
+    width: 140px;
+    position: relative;
+    margin: auto;
+    text-align: center;
+}
+
+.upload img {
+    width: 125px;
+    height: 125px;
+}
+
+.upload .right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--cream);
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.upload .left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--red);
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.upload .fa-solid {
+    color: var(--grey)!important;
+}
+
+#fileImg {
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+}
+
+.upload input::-webkit-file-upload-button, .upload input[type=submit] {
+    cursor: pointer;
 }

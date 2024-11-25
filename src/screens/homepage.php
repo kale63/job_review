@@ -49,90 +49,133 @@ if (isset($_SESSION["user_id"])) {
                 <i class="fa-solid fa-filter"></i>
             </div>
             <div class="navbar-icon mx-2">
-                <i class="fa-solid fa-user"></i>
+                <a href="profile.php"><i class="fa-solid fa-user"></i></a>
             </div>
         </nav>
     </div>
-
-    <div class="welcome-tab w-100 mt-5 d-flex">
-        <!-- Info -->
-        <div class="rating mt-5 w-100 d-flex flex-column justify-content-center align-items-center">
-            <h6>La calificación actual de las empresas en México es de: </h6>
-            <h3 id="rating">placeholder/5</h3>
-            <div class="star-div d-flex flex-row">
-                <span onclick="gfg(1)" class="star">★</span>
-                <span onclick="gfg(2)" class="star">★</span>
-                <span onclick="gfg(3)" class="star">★</span>
-                <span onclick="gfg(4)" class="star">★</span>
-                <span onclick="gfg(5)" class="star">★</span>
-            </div>
-        </div>
-    </div>
     
-    <div class="post-tab">
-        <!-- Posts -->
-        <div class="posts">
-
-        </div>
-        <div class="p-4 mt-5 d-flex flex-row w-100 justify-content-around">
-            <div class="card bg-secondary mb-3" style="max-width: 31%;">
-                <div class="card-header ">
-                    <h4 class="card-title">Titulo de la Publicacion</h4>
+    <div class="pretty-bg mb-5">
+        <div class="welcome-tab w-100 d-flex flex-column">
+            <!-- Info -->
+            <div class="rating mt-5 w-100 d-flex flex-column justify-content-center align-items-center">
+                <h6>La calificación actual de las empresas en México es de: </h6>
+                <h3 id="rating">placeholder/5</h3>
+                <div class="star-div d-flex flex-row">
+                    <span onclick="gfg(1)" class="star">★</span>
+                    <span onclick="gfg(2)" class="star">★</span>
+                    <span onclick="gfg(3)" class="star">★</span>
+                    <span onclick="gfg(4)" class="star">★</span>
+                    <span onclick="gfg(5)" class="star">★</span>
                 </div>
-                <div class="card-body">
-                    <div class="card-top d-flex flex-row w-100 justify-content-around">
-                        <h3>4/5</h3>   
-                         <p>Empresa</p>
+            </div>
+            <div class="about">
+                <div class="container px-4 py-2" id="featured-3">
+                    <!--<h2 class="pb-2 border-bottom">Columns with icons</h2>-->
+                    <div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
+                    <div class="feature col">
+                        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+                            <i class="fa-solid fa-poo"></i>
+                        </div>
+                        <h3 class="fs-2 text-body-emphasis">Popo</h3>
+                        <p>Uh huh, popo.</p>
+                        <a href="#" class="icon-link">
+                        No hay popo aqui!
+                        <i class="fa-solid fa-link"></i>
+                        </a>
                     </div>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="bookmark justify-content-end w-100">
-                        <div id="bookmark-empty">
-                            <i class="fa-regular fa-bookmark"></i>
+                    <div class="feature col">
+                        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+                            <i class="fa-solid fa-poo-storm"></i>
                         </div>
-                        <div class="d-none" id="bookmark-checked">
-                            <i class="fa-solid fa-bookmark"></i>
+                        <h3 class="fs-2 text-body-emphasis">Featured title</h3>
+                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                        <a href="#" class="icon-link">
+                        Call to action
+                        <i class="fa-solid fa-link"></i>
+                        </a>
+                    </div>
+                    <div class="feature col">
+                        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+                            <i class="fa-solid fa-users"></i>
                         </div>
+                        <h3 class="fs-2 text-body-emphasis">Featured title</h3>
+                        <p>Ve lo que la comunidad piensa sobre las empresas.</p>
+                        <a href="#" class="icon-link">
+                        Call to action
+                        <i class="fa-solid fa-link"></i>
+                        </a>
+                    </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!--<div class="pagination">
-            <div>
-                <ul class="pagination pagination-sm">
-                    <li class="page-item disabled">
-                    <a class="page-link" href="#">&laquo;</a>
-                    </li>
-                    <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                    <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                    <a class="page-link" href="#">5</a>
-                    </li>
-                    <li class="page-item">
-                    <a class="page-link" href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>-->
-
-        <div class="footer-bit">
-            <footer>
-
-            </footer>
         </div>
         
-    </div>
+        <div class="post-tab">
+            <!-- Posts -->
+            <div class="posts">
 
+            </div>
+            <div class="p-4 mt-5 d-flex flex-row w-100 justify-content-around">
+                <div class="card bg-secondary mb-3" style="max-width: 31%;">
+                    <div class="card-header ">
+                        <h4 class="card-title">Titulo de la Publicacion</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top d-flex flex-row w-100 justify-content-around">
+                            <h3>4/5</h3>   
+                            <p>Empresa</p>
+                        </div>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="bookmark justify-content-end w-100">
+                            <div id="bookmark-empty">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                            <div class="d-none" id="bookmark-checked">
+                                <i class="fa-solid fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="pagination">
+                <div>
+                    <ul class="pagination pagination-sm">
+                        <li class="page-item disabled">
+                        <a class="page-link" href="#">&laquo;</a>
+                        </li>
+                        <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                        <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                        <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                        <a class="page-link" href="#">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>-->
+
+            <div class="footer-bit">
+                <footer>
+
+                </footer>
+            </div>
+            
+        </div>
+
+    </div>
+    
     <script>
         //active search bar
         document.getElementById('search-icon').addEventListener('click', function () {

@@ -47,15 +47,16 @@
                         <input class="w-100" type="text" name="company" id="company" placeholder="Escibe el nombre de la empresa">
                     </div>
                 </div>
+                <p id="output"></p>
                 <div class="rating-div mt-3 w-100">
                     <div class="rating w-100 d-flex flex-column">
                         <label id="rating-label">¿Qué calificación le das a la empresa?</label>
                         <div class="star-div d-flex flex-row">
-                            <span onclick="gfg(1)" class="star">★</span>
-                            <span onclick="gfg(2)" class="star">★</span>
-                            <span onclick="gfg(3)" class="star">★</span>
-                            <span onclick="gfg(4)" class="star">★</span>
-                            <span onclick="gfg(5)" class="star">★</span>
+                            <span onclick="gfg(1)" class="star-rating">★</span>
+                            <span onclick="gfg(2)" class="star-rating">★</span>
+                            <span onclick="gfg(3)" class="star-rating">★</span>
+                            <span onclick="gfg(4)" class="star-rating">★</span>
+                            <span onclick="gfg(5)" class="star-rating">★</span>
                         </div>
                     </div>
                 </div>
@@ -66,8 +67,8 @@
                     </div>
                 </div>
 
-                <div class="btn-div w-25 mt-4">
-                    <button type="submit" class="btn post-btn w-100">Publicar</button>
+                <div class="btn-div w-25 mt-4 mb-5">
+                    <button type="submit" class="btn post-btn w-100 btn-outline-success">Publicar</button>
                 </div>
             </form>
         </div>   
@@ -80,5 +81,7 @@
 
         </footer>
     </div>
+
+    <script src="../app.js"></script>
 </body>
 </html>
