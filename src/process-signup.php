@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "../../backend/API/Database.php";
+require __DIR__ . "../../backend/db.php";
 
 if (empty($_POST["username"])) {
     die("El nombre de usuario es obligatorio");
@@ -28,7 +28,7 @@ if ($_POST["password"] !== $_POST["password-confirm"]) {
 
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-$sql  = "INSERT INTO user (username, email, password)
+$sql  = "INSERT INTO users (username, email, password)
          VALUES (?, ?, ?)";
 
 $stmt = $my_sqli->stmt_init();
@@ -41,7 +41,7 @@ $stmt->bind_param("sss", $_POST["username"], $_POST["email"],  $password_hash);
 
 
 if ($stmt->execute()) {
-    header("Location: signup-sucess.html");
+    header("Location: screens/signup-success.html");
     exit;
 } else {
     if ($my_sqli->errno === 1602) {

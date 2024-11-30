@@ -2,6 +2,7 @@
     --green : #7aa266;
     --white : #f8f9fa;
     --blue : #d9e3f1;
+    --bluer : #9abbe9;
     --cream : #f1e7d9;
     --grey : #8c939c;
     --red : #9f4a39;
@@ -10,6 +11,31 @@
 body {
     margin: 0 auto;
     background-color: var(--blue)!important;
+}
+
+/**** SIGN UP & LOGIN ****/
+.smaller-input input {
+    height: 2.5vmax!important;
+    border-radius: 5px;
+    border: 1px solid var(--grey);
+}
+
+.white-body {
+    background-color: var(--white)!important;
+}
+
+.signup-title {
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+/**** INFO ****/
+
+.home-btn {
+    color: var(--grey)!important;
+    font-size: 1.5vmax;
+    font-weight: bold;
+    background-color: var(--bluer)!important;
 }
 
 /******* HOOMEE ******/
@@ -107,7 +133,7 @@ a:hover {
 
 /* Posts Tab */
 
-.post-tab {
+.post-tab, .info-tab {
     border-top-left-radius: 5%;
     border-top-right-radius: 5%;
     background-color: var(--blue);

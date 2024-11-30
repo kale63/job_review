@@ -28,22 +28,19 @@ if (isset($_SESSION["user_id"])) {
     <?php endif; ?>-->
     
     <!-- Navbar -->
-    <div class="navbar navbar-expand-lg justify-content-center w-100">
-        <nav class="navbar-nav d-flex flex-row align-items-center">
+    <div class="navbar-expand-lg justify-content-center w-100">
+        <nav class=" navbar navbar-nav d-flex flex-row align-items-center">
             <div class="navbar-icon mx-2 active-icon">
                 <a href="#"><i class="fa-solid fa-house"></i></a>
             </div>
             <div class="navbar-icon mx-2">
                 <a href="post-something.php"><i class="fa-solid fa-pen"></i></a>
             </div>
-            <div class="input-group mx-2 d-none" id="search-bar">
+            <div class="input-group mx-2" id="search-bar">
                 <input type="text" class="form-control" placeholder="Búsqueda" aria-describedby="button-addon">
                 <button class="btn btn-primary" type="button" id="button-addon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-            </div>
-            <div class="navbar-icon mx-2" id="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="navbar-icon mx-2">
                 <i class="fa-solid fa-filter"></i>
@@ -66,46 +63,6 @@ if (isset($_SESSION["user_id"])) {
                     <span onclick="gfg(3)" class="star">★</span>
                     <span onclick="gfg(4)" class="star">★</span>
                     <span onclick="gfg(5)" class="star">★</span>
-                </div>
-            </div>
-            <div class="about">
-                <div class="container px-4 py-2" id="featured-3">
-                    <!--<h2 class="pb-2 border-bottom">Columns with icons</h2>-->
-                    <div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
-                    <div class="feature col">
-                        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
-                            <i class="fa-solid fa-poo"></i>
-                        </div>
-                        <h3 class="fs-2 text-body-emphasis">Popo</h3>
-                        <p>Uh huh, popo.</p>
-                        <a href="#" class="icon-link">
-                        No hay popo aqui!
-                        <i class="fa-solid fa-link"></i>
-                        </a>
-                    </div>
-                    <div class="feature col">
-                        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
-                            <i class="fa-solid fa-poo-storm"></i>
-                        </div>
-                        <h3 class="fs-2 text-body-emphasis">Featured title</h3>
-                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                        <a href="#" class="icon-link">
-                        Call to action
-                        <i class="fa-solid fa-link"></i>
-                        </a>
-                    </div>
-                    <div class="feature col">
-                        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <h3 class="fs-2 text-body-emphasis">Featured title</h3>
-                        <p>Ve lo que la comunidad piensa sobre las empresas.</p>
-                        <a href="#" class="icon-link">
-                        Call to action
-                        <i class="fa-solid fa-link"></i>
-                        </a>
-                    </div>
-                    </div>
                 </div>
             </div>
         </div>

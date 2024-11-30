@@ -2,7 +2,7 @@
 
 namespace Backend\API;
 
-abstract class database {
+abstract class Database {
     protected $conexion;
     protected $data;
 

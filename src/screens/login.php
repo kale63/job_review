@@ -3,9 +3,9 @@
 $is_invalid = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $my_sqli = require __DIR__ . "../../../backend/API/Database.php";
+    $my_sqli = require __DIR__ . "../../../backend/db.php";
 
-    $sql = sprintf("SELECT * FROM user WHERE email = '%s'",
+    $sql = sprintf("SELECT * FROM users WHERE email = '%s'",
                     $my_sqli->real_escape_string($_POST["email"]));
     
     $result = $my_sqli->query($sql);
@@ -33,30 +33,47 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/morph/bootstrap.min.css">
-    <title>Registro</title>
+    <script src="https://kit.fontawesome.com/2a6aa53490.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Inicio de Sesión</title>
 </head>
-<body>
-    <h1>Inicio de Sesión</h1>
+<body class="white-body">
+    <div class="signup-page w-100 d-flex flex-row align-content-center justify-content-around">
+        <div class="welcome-img w-70 d-flex align-content-center">
+            <img src="../img/placeholder.gif" class="w-80 mx-5 mt-5">
+        </div>
 
-    <?php if ($is_invalid): ?>
-        <em>Inicio de sesión inválido</em>
-    <?php endif; ?>
+        <div class="signup w-40 mt-5">
+            <h1 class="signup-title">Inicio de Sesión</h1>
+
+            <?php if ($is_invalid): ?>
+                <em>Inicio de sesión inválido</em>
+            <?php endif; ?>
     
-    <div class="registro">
-        <form method="POST">
-            <div class="email-div">
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" placeholder="correo@dominio.com"
-                        value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
-            </div>
-            <div class="password-div">
-                <input type="password" name="password" id="password" placeholder="Crea una contraseña">
-            </div>
+            <div class="registro mt-5">
+                <form method="POST">
+                    <div class="email-div mt-3 w-100">
+                        <label for="email" id="email-label">E-mail</label>
+                        <div class="input-div smaller-input w-80 d-flex">
+                            <input type="email" class="w-100" name="email" id="email" placeholder="correo@dominio.com"
+                                value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
+                        </div>
+                    </div>
+                    <div class="password-div mt-3 w-100">
+                        <label for="password" id="pw-label">Contraseña</label>
+                        <div class="input-div smaller-input w-80 d-flex">
+                            <input type="password" class="w-100" name="password" id="password" placeholder="Ingresa tu Contraseña">
+                        </div>
+                    </div>
 
-            <button>Inicia sesión</button>
-        </form>
-        <div class="login">
-         <p>¿No tienes una cuenta? <a href="signup.html">Regístrate</a></p>
+                    <div class="d-flex justify-content-center mt-4">
+                        <button class="mt-4 btn btn-outline-success post-btn">Iniciar Sesión</button>
+                    </div>
+                </form>
+                <div class="login-a mt-4 d-flex justify-content-center">
+                    <p>¿No tienes una cuenta? <a href="signup.html">Regístrate</a></p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
