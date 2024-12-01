@@ -1,17 +1,10 @@
 <?php
 session_start();
 
-    if (!isset($_SESSION["user_id"])) {
-        header("Location: login.php");
-        exit;
-    }
-
-if (isset($_SESSION["user_id"])) {
-    $my_sqli = require __DIR__ . "../../../backend/API/Database.php";
-
-    $sql = "SELECT * FROM user
-            WHERE id = {$_SESSION["user_id"]}";
-}
+/*if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit;
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +41,16 @@ if (isset($_SESSION["user_id"])) {
                 </button>
             </div>
             <div class="navbar-icon mx-2">
-                <i class="fa-solid fa-filter"></i>
+                <i class="fa-solid fa-filter" id="filter-icon"></i>
+                <div id="checkboxList" style="display: none;">
+                    <ul>
+                        <li><input type="checkbox" class="checkbox" checked>★</li>
+                        <li><input type="checkbox" class="checkbox" checked>★★</li>
+                        <li><input type="checkbox" class="checkbox" checked>★★★</li>
+                        <li><input type="checkbox" class="checkbox" checked>★★★★</li>
+                        <li><input type="checkbox" class="checkbox" checked>★★★★★</li>
+                    </ul>
+                </div>
             </div>
             <div class="navbar-icon mx-2">
                 <a href="profile.php"><i class="fa-solid fa-user"></i></a>
@@ -74,8 +76,8 @@ if (isset($_SESSION["user_id"])) {
             <div class="posts">
 
             </div>
-            <div id="content-post" class="p-4 mt-5 d-flex flex-row w-100 justify-content-around">
-                <!--Posts-->
+            <div id="content-post"class="p-4 mt-5 d-flex flex-row flex-wrap w-100 justify-content-around">
+                <!-- Posts go here -->
             </div>
 
             <!--<div class="pagination">

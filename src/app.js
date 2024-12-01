@@ -7,19 +7,17 @@ $(document).ready(function(){
     });*/
 
     // Not bookmarked post
-    $('#bookmark-empty').on('click', function () {
-        $('#bookmark-checked').show();
-        $('#bookmark-empty').hide();
-    });
-
-    // Bookmarked post
-    $('#bookmark-checked').on('click', function () {
-        $('#bookmark-empty').show();
-        $('#bookmark-checked').hide();
+    
+    $(document).ready(function() {
+        // Al hacer clic en el icono de filtro, mostrar u ocultar la lista de checkboxes
+        $('#filter-icon').click(function() {
+            $('#checkboxList').toggle(); // Cambia el estado de visibilidad
+        });
     });
     
-
-    // Star rating function for rating in posting page
+    $('.checkbox').on('change', function() {
+        listarPostsInicio();  
+    });
 
 //let stars = document.getElementsByClassName("star-rating");
 let stars = $(".star-rating");
@@ -28,6 +26,7 @@ let rating;
 let sumGrades;
 let average = 0;
 let sumPosts;
+let postBookmarked;
 
 if($('#grade-post').val()){
     rating = $('#grade-post').val();
@@ -106,12 +105,17 @@ $('#cancel').click(function() {
     $('#cancel, #confirm').hide();
     $('#upload').show();
 });
+    listarPostsGuardados();
     listarPostsInicio();
     listarPostsPerfil();
-    listarPostsGuardados();
 
     $('#search-icon').keyup(function(e){
         if($('#search-icon').val()){
+            let selectedGrades = [];
+            $('.checkbox:checked').each(function() {
+                let grade = $(this).parent().text().trim().length;
+                selectedGrades.push(grade);
+            });
             let search = $('#search-icon').val();
             $.ajax({
                 url: '../../backend/post-search.php',
@@ -121,30 +125,39 @@ $('#cancel').click(function() {
                 success: function(response){
                     let posts = JSON.parse(response);
                     let template = '';
+                    let iconClass;
+                    let iconElement;
                     //let template_bar = '';
                     posts.forEach(post => {
-                        template += `
-                        <div id="${post.id}"class="card bg-secondary mb-3" style="max-width: 31%;">
-                            <div class="card-header ">
-                                <h4 class="card-title">${post.title}</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-top d-flex flex-row w-100 justify-content-around">
-                                    <h3>${post.grade}/5</h3>   
-                                    <p>${post.company}</p>
-                                </div>
-                                <p class="card-text">${post.description}</p>
-                                <div class="bookmark justify-content-end w-100">
-                                    <div class="bookmark-empty">
-                                        <i class="fa-regular fa-bookmark"></i>
+                        if(postBookmarked.includes(post.id)){
+                            iconClass = 'bookmark-checked';
+                            iconElement = '<i class="fa-solid fa-bookmark"></i>'
+                        }else{
+                            iconClass = 'bookmark-empty';
+                            iconElement = '<i class="fa-regular fa-bookmark"></i>';
+                        }
+                        let postGrade = parseInt(post.grade);
+                        if (selectedGrades.includes(postGrade)) {
+                            template += `
+                                <div post-id="${post.id}"class="card bg-secondary mb-3" style="max-width: 31%;">
+                                    <div class="card-header ">
+                                        <h4 class="card-title">${post.title}</h4>
                                     </div>
-                                    <div class="bookmark-checked">
-                                        <i class="fa-solid fa-bookmark"></i>
+                                    <div class="card-body">
+                                        <div class="card-top d-flex flex-row w-100 justify-content-around">
+                                            <h3>${post.grade}/5</h3>   
+                                            <p>${post.company}</p>
+                                        </div>
+                                        <p class="card-text">${post.description}</p>
+                                        <div class="bookmark justify-content-end w-100">
+                                            <div class="${iconClass}">
+                                                ${iconElement}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    `;
+                            `;
+                        }
                     });
                     $('#content-post').html(template);
                 }
@@ -155,6 +168,11 @@ $('#cancel').click(function() {
     });
 
     function listarPostsInicio() {
+        let selectedGrades = [];
+        $('.checkbox:checked').each(function() {
+            let grade = $(this).parent().text().trim().length;
+            selectedGrades.push(grade);
+        });
         $.ajax({
             url: '../../backend/post-list.php',
             type: 'GET',
@@ -169,37 +187,44 @@ $('#cancel').click(function() {
                     let template = '';
                     sumGrades = 0;
                     sumPosts = 0;
-
+                    let iconClass;
+                    let iconElement;
                     posts.forEach(post => {
+                        if(postBookmarked.includes(post.id)){
+                            iconClass = 'bookmark-checked';
+                            iconElement = '<i class="fa-solid fa-bookmark"></i>'
+                        }else{
+                            iconClass = 'bookmark-empty';
+                            iconElement = '<i class="fa-regular fa-bookmark"></i>';
+                        }
                         console.log(post);
-                        template += `
-                        <div post-id="${post.id}"class="card bg-secondary mb-3" style="max-width: 31%;">
-                            <div class="card-header ">
-                                <h4 class="card-title">${post.title}</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-top d-flex flex-row w-100 justify-content-around">
-                                    <h3>${post.grade}/5</h3>   
-                                    <p>${post.company}</p>
-                                </div>
-                                <p class="card-text">${post.description}</p>
-                                <div class="bookmark justify-content-end w-100">
-                                    <div class="bookmark-empty">
-                                        <i class="fa-regular fa-bookmark"></i>
+                        let postGrade = parseInt(post.grade);
+                        if (selectedGrades.includes(postGrade)) {
+                            template += `
+                                <div post-id="${post.id}"class="card bg-secondary mb-3" style="max-width: 31%;">
+                                    <div class="card-header ">
+                                        <h4 class="card-title">${post.title}</h4>
                                     </div>
-                                    <div class="bookmark-checked">
-                                        <i class="fa-solid fa-bookmark"></i>
+                                    <div class="card-body">
+                                        <div class="card-top d-flex flex-row w-100 justify-content-around">
+                                            <h3>${post.grade}/5</h3>   
+                                            <p>${post.company}</p>
+                                        </div>
+                                        <p class="card-text">${post.description}</p>
+                                        <div class="bookmark justify-content-end w-100">
+                                            <div class="${iconClass}">
+                                                ${iconElement}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    `;
-                    sumGrades += parseInt(post.grade);
+                            `;
+                        }
+                    sumGrades += postGrade;
                     sumPosts++;
                     });
                     // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
                     $('#content-post').html(template);
-                    $('.bookmark-checked').hide();
                     aveGrade();
                 }
             }
@@ -253,6 +278,7 @@ $('#cancel').click(function() {
     }
 
     function listarPostsGuardados() {
+        postBookmarked = [];
         $.ajax({
             url: '../../backend/post-listbook.php',
             data: {currentuser},
@@ -268,6 +294,7 @@ $('#cancel').click(function() {
                     let template = '';
 
                     posts.forEach(post => {
+                        postBookmarked.push(post.id);
                         template += `
                             <div post-id="${post.id}" class="card border-light-subtle bg-dark-subtle mb-3" style="max-width: 48%;">
                                 <div class="card-header ">
@@ -280,9 +307,6 @@ $('#cancel').click(function() {
                                     </div>
                                     <p class="card-text">${post.description}</p>
                                     <div class="bookmark justify-content-end w-100">
-                                        <div class="bookmark-empty">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </div>
                                         <div class="bookmark-checked">
                                             <i class="fa-solid fa-bookmark"></i>
                                         </div>
@@ -293,7 +317,6 @@ $('#cancel').click(function() {
                     });
                     // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
                     $('#my-bookposts').html(template);
-                    $('.bookmark-empty').hide();
                 }
             }
         });
@@ -414,10 +437,9 @@ $('#cancel').click(function() {
             let finalJSON = JSON.stringify(DataJSON,null,2);
             console.log(finalJSON);
             $.post('../../backend/bookmarked-add.php', finalJSON, (response) => {
-                //$('#my-posts').hide();
-                element.find('.bookmark-checked').show();
-                element.find('.bookmark-empty').hide();
                 listarPostsGuardados();
+                element.find('.bookmark').removeClass('bookmark-empty').addClass('bookmark-checked')
+                .html('<i class="fa-solid fa-bookmark"></i>');
                 console.log(response);
             });
         }
@@ -432,9 +454,10 @@ $('#cancel').click(function() {
                 post: parseInt(element.attr('post-id'))
             };
             let finalJSON = JSON.stringify(DataJSON,null,2);
-            $.post('../../backend/bookmarked-delete.php', {finalJSON}, (response) => {
+            $.post('../../backend/bookmarked-delete.php', finalJSON, (response) => {
                 //$('#my-posts').hide();
                 listarPostsGuardados();
+                element.find('.bookmark').removeClass('bookmark-checked').addClass('bookmark-empty').html('<i class="fa-regular fa-bookmark"></i>');
                 console.log(response);
             });
         }

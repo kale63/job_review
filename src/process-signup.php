@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "../../backend/db.php";
+require __DIR__ . "../../backend/db2.php";
 
 if (empty($_POST["username"])) {
     die("El nombre de usuario es obligatorio");

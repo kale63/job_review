@@ -1,5 +1,5 @@
 <?php
-include 'db.php'; 
+include 'db2.php'; 
 
 $title = "";
 $company = "";
