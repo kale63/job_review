@@ -1,10 +1,15 @@
 <?php
 session_start();
 
+/*if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit;
+}*/
+
 if (isset($_SESSION["user_id"])) {
     $my_sqli = require __DIR__ . "../../../backend/db.php";
 
-    $sql = "SELECT * FROM users
+    $sql = "SELECT * FROM user
             WHERE id = {$_SESSION["user_id"]}";
 
     $result = $my_sqli->query($sql);
@@ -13,17 +18,17 @@ if (isset($_SESSION["user_id"])) {
 }
 
 if(isset($_FILES["fileImg"]["name"])) {
-    $id = $_POST["user_id"];
+    $id = $_SESSION["user_id"];
 
-    $src = $_FILES["filesImg"]["tmp_name"];
-    $imageName = uniqid() . $_FILES["filesImg"]["name"];
+    $src = $_FILES["fileImg"]["tmp_name"];
+    $imageName = uniqid() . $_FILES["fileImg"]["name"];
 
     $target = "../img/profile-pics/" . $imageName;
 
     move_uploaded_file($src, $target);
 
-    $query = "UPDATE users SET image = '$imageName' WHERE id = $user_id";
-    mysqli_query($conexion, $query);
+    $query = "UPDATE user SET image = '$imageName' WHERE id = $user_id";
+    mysqli_query($my_sqli, $query);
 }
 ?>
 
@@ -53,7 +58,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                 <a href="index.php" class="mx-5"><i class="fa-solid fa-circle-info"></i></a>
             </div>
             <div class="navbar-icon mx-2">
-                <a href="profile.php" class="logout">Cerrar Sesión   <i class="fa-solid fa-right-to-bracket"></i></a>
+                <a href="../logout.php" class="logout">Cerrar Sesión   <i class="fa-solid fa-right-to-bracket"></i></a>
             </div>
         </nav>
     </div>
@@ -63,7 +68,7 @@ if(isset($_FILES["fileImg"]["name"])) {
          <div class="profile-div w-100 d-flex flex-row justify-content-center align-items-start">
             <div class="user-info mx-5 d-flex flex-column col-4 mt-5 justify-content-center align-items-center">
                 <div class="profile-pic w-100 mb-5 d-flex justify-content-center align-items-center">
-                    <img src="../img/profile-defualt.jpg" class="user-pic rounded-circle w-80" alt="profile picture" id="profilePic">
+                    <img src="https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg" class="user-pic rounded-circle w-80" alt="profile picture" id="profilePic">
                 </div>
                 <div class="username">
                     <h3>Username</h3>
@@ -80,7 +85,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                 <div class="posted justify-content-center align-items-center bg-gradient">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Mis Publicaciones</h2>
                     <div class="posts">
-                        <div class="p-4 mt-5 d-flex flex-row w-100 justify-content-around">
+                        <div class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
                             <div class="card border-light-subtle bg-dark-subtle mb-3" style="max-width: 48%;">
                                 <div class="card-header ">
                                     <h4 class="card-title">Titulo de la Publicacion</h4>
@@ -123,13 +128,14 @@ if(isset($_FILES["fileImg"]["name"])) {
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="bookmarked mt-4 justify-content-center align-items-center bg-gradient">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Publicaciones Guardadas</h2>
                     <div class="posts">
-                        <div class="p-4 mt-5 d-flex flex-row w-100 justify-content-around">
+                        <div class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
                             <div class="card border-light-subtle bg-dark-subtle mb-3" style="max-width: 48%;">
                                 <div class="card-header ">
                                     <h4 class="card-title">Titulo de la Publicacion</h4>
@@ -171,7 +177,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                     <div class="modal-body d-flex flex-column col-4 mt-2 justify-content-center align-items-center w-100">
                         <div class="upload w-75">
                             <div class="profile-pic w-100 mb-5 d-flex justify-content-center align-items-center">
-                                <img src="../img/profile-defualt.jpg" class="user-pic w-75" alt="profile picture" id="edit-pic">
+                                <img src="https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg" class="user-pic w-75" alt="profile picture" id="edit-pic">
                             </div>
                             <div class="right d-flex flex-row" id="upload">
                                 <input type="file" name="fileImg" id="fileImg" accept=".jpg, .jpeg, .png">

@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+/*if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit;
+}*/
+
 if (isset($_SESSION["user_id"])) {
     $my_sqli = require __DIR__ . "../../../backend/API/Database.php";
 
@@ -34,10 +39,10 @@ if (isset($_SESSION["user_id"])) {
                 <a href="#" class="active-icon"><i class="fa-solid fa-house"></i></a>
             </div>
             <div class="navbar-icon mx-2">
-                <a href="post-something.php"><i class="fa-solid fa-pen"></i></a>
+                <a href="post-something.php"><i class="fa-solid fa-pen" id="publicar"></i></a>
             </div>
             <div class="input-group mx-2" id="search-bar">
-                <input type="text" class="form-control" placeholder="Búsqueda" aria-describedby="button-addon">
+                <input id="search-icon" type="text" class="form-control" placeholder="Búsqueda" aria-describedby="button-addon">
                 <button class="btn btn-primary" type="button" id="button-addon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -47,6 +52,7 @@ if (isset($_SESSION["user_id"])) {
             </div>
             <div class="navbar-icon mx-2">
                 <a href="profile.php"><i class="fa-solid fa-user"></i></a>
+                <div id="current-user" data-id-user="<?php echo $_SESSION['user_id']; ?>"></div>
             </div>
         </nav>
     </div>
@@ -56,13 +62,9 @@ if (isset($_SESSION["user_id"])) {
             <!-- Info -->
             <div class="rating mt-5 w-100 d-flex flex-column justify-content-center align-items-center">
                 <h6>La calificación actual de las empresas en México es de: </h6>
-                <h3 id="rating">placeholder/5</h3>
-                <div class="star-div d-flex flex-row">
-                    <span onclick="gfg(1)" class="star">★</span>
-                    <span onclick="gfg(2)" class="star">★</span>
-                    <span onclick="gfg(3)" class="star">★</span>
-                    <span onclick="gfg(4)" class="star">★</span>
-                    <span onclick="gfg(5)" class="star">★</span>
+                <h3 id="rating"></h3>
+                <div id="rating-average" class="star-div d-flex flex-row">
+                    <!--- Estrellas del promedio-->
                 </div>
             </div>
         </div>
@@ -73,26 +75,7 @@ if (isset($_SESSION["user_id"])) {
 
             </div>
             <div class="p-4 mt-5 d-flex flex-row w-100 justify-content-around">
-                <div class="card bg-secondary mb-3" style="max-width: 31%;">
-                    <div class="card-header ">
-                        <h4 class="card-title">Titulo de la Publicacion</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-top d-flex flex-row w-100 justify-content-around">
-                            <h3>4/5</h3>   
-                            <p>Empresa</p>
-                        </div>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="bookmark justify-content-end w-100">
-                            <div id="bookmark-empty">
-                                <i class="fa-regular fa-bookmark"></i>
-                            </div>
-                            <div class="d-none" id="bookmark-checked">
-                                <i class="fa-solid fa-bookmark"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Posts go here -->
             </div>
 
             <!--<div class="pagination">
@@ -128,12 +111,16 @@ if (isset($_SESSION["user_id"])) {
 
                 </footer>
             </div>
-            
         </div>
-
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <!-- Lógica del Frontend -->
+    <script src="../app.js"></script>
     
-    <script>
+    <!--<script>
         //active search bar
         document.getElementById('search-icon').addEventListener('click', function () {
             document.getElementById('search-bar').classList.toggle('d-none');
@@ -152,6 +139,6 @@ if (isset($_SESSION["user_id"])) {
             document.getElementById('bookmark-checked').classList.toggle('d-none');
         });
 
-    </script>
+    </script>-->
 </body>
 </html>
