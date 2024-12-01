@@ -82,80 +82,19 @@ if(isset($_FILES["fileImg"]["name"])) {
                 </div>
             </div>
             <div class="user-posts mt-5 d-flex flex-column col-6 justify-content-center align-items-center">
-                <div class="posted justify-content-center align-items-center bg-gradient">
+                <div class="posted justify-content-center align-items-center bg-gradient"  style="visibility: hidden;">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Mis Publicaciones</h2>
                     <div class="posts">
-                        <div class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
-                            <div class="card border-light-subtle bg-dark-subtle mb-3" style="max-width: 48%;">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Titulo de la Publicacion</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-top d-flex flex-row w-100 justify-content-around">
-                                        <h3>4/5</h3>   
-                                        <p>Empresa</p>
-                                    </div>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="posts-btn-div d-flex flex-row justify-content-around w-100">
-                                        <div class="edit" id="edit-btn">
-                                            <button class="btn edit-btn btn-outline-secondary"
-                                                onclick="editPost(<?php echo $postId; ?>)">Editar</button>
-                                        </div>
-                                        <div class="delete" id="delete-btn">
-                                            <button class="btn delete-btn btn-outline-secondary"
-                                                onclick="confirmDelete(<?php echo $postId; ?>)">Eliminar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card border-light-subtle bg-dark-subtle mb-3" style="max-width: 48%;">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Titulo de la Publicacion</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-top d-flex flex-row w-100 justify-content-around">
-                                        <h3>4/5</h3>   
-                                        <p>Empresa</p>
-                                    </div>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="posts-btn-div d-flex flex-row justify-content-around w-100">
-                                        <div class="edit" id="edit-btn">
-                                            <button class="btn edit-btn btn-outline-secondary">Editar</button>
-                                        </div>
-                                        <div class="delete" id="delete-btn">
-                                            <button class="btn delete-btn btn-outline-secondary">Eliminar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="my-posts" class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
                             
                         </div>
                     </div>
                 </div>
-                <div class="bookmarked mt-4 justify-content-center align-items-center bg-gradient">
+                <div class="bookmarked mt-4 justify-content-center align-items-center bg-gradient"  style="visibility: hidden;">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Publicaciones Guardadas</h2>
                     <div class="posts">
-                        <div class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
-                            <div class="card border-light-subtle bg-dark-subtle mb-3" style="max-width: 48%;">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Titulo de la Publicacion</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-top d-flex flex-row w-100 justify-content-around">
-                                        <h3>4/5</h3>   
-                                        <p>Empresa</p>
-                                    </div>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="bookmark justify-content-end w-100">
-                                        <div class="d-none" id="bookmark-empty">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </div>
-                                        <div id="bookmark-checked">
-                                            <i class="fa-solid fa-bookmark"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="my-bookposts" class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
+
                         </div>
                     </div>
                 </div>
@@ -167,6 +106,7 @@ if(isset($_FILES["fileImg"]["name"])) {
     <div class="modal" id="editing-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+            <div id="current-user" data-id-user="<?php echo $_SESSION['user_id']; ?>"></div>
                 <div class="modal-header">
                     <h5 class="modal-title">Editar el Perfil</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -212,12 +152,17 @@ if(isset($_FILES["fileImg"]["name"])) {
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <!-- Lógica del Frontend -->
+
     <script src="../app.js"></script>
-    <script>
+    <!--<script>
         document.getElementById('bookmark-checked').addEventListener('click', function () {
             document.getElementById('bookmark-empty').classList.toggle('d-none');
             document.getElementById('bookmark-checked').classList.toggle('d-none');
         });
-    </script>
+    </script>-->
 </body>
 </html>
