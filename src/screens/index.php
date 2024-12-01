@@ -1,9 +1,5 @@
 <?php
-    session_start();
-    if (!isset($_SESSION["user_id"])) {
-        header("Location: login.php");
-        exit;
-    }
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +81,7 @@
             </div>
         </div>   
     </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>

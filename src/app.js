@@ -1,3 +1,56 @@
+// uploading images
+/*document.getElementById("fileImg").onchange = function() {
+    document.getElementById("edit-pic").src = URL.createObjectURL(fileImg.files[0]);
+
+    document.getElementById("cancel").style.visibility = "visible";
+    document.getElementById("confirm").style.visibility = "visible";
+
+    document.getElementById("upload").style.visibility = "hidden";
+}
+
+var userImage = document.getElementById('edit-pic').src;
+document.getElementById("cancel").onclick = function() {
+    document.getElementById("edit-pic").src = userImage;
+
+    document.getElementById("cancel").style.visibility = "hidden";
+    document.getElementById("confirm").style.visibility = "hidden";
+
+    document.getElementById("upload").style.visibility = "visible";
+}
+
+//eidtar post
+
+function editPost(postId) {
+    window.location.href = `edit-post.php?post_id=${postId}`;
+}
+
+//borrar post
+
+function confirmDelete(postId) {
+    const confirmation = confirm("¿Estás seguro de que deseas eliminar esta publicación?");
+    
+    if (confirmation) {
+        fetch(`delete-post.php`, { //o como se llame
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `post_id=${postId}`
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                alert("Error al eliminar la publicación.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Hubo un problema al intentar eliminar la publicación.");
+        });
+    }
+}*/
+
 $(document).ready(function(){
 
     // Active search bar
@@ -416,7 +469,8 @@ $('#cancel').click(function() {
                 form.appendChild(descIn);	
 
                 form.method = 'POST';
-                form.action = 'http://penguin.linux.test/proyecto-tecweb/job_review/src/screens/post-something.php';  
+                //form.action = 'http://penguin.linux.test/proyecto-tecweb/job_review/src/screens/post-something.php';
+                form.action = '../../backend/post-something.php';  
 
                 document.body.appendChild(form);
                 form.submit();
@@ -519,3 +573,4 @@ function validarProducto(producto) {
 
     return errores;
 }
+

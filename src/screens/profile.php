@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION["user_id"])) {
+
+/*if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit;
-}
+}*/
 
 if (isset($_SESSION["user_id"])) {
     $my_sqli = require __DIR__ . "../../../backend/db2.php";
@@ -105,7 +106,7 @@ if(isset($_FILES["fileImg"]["name"])) {
     <div class="modal" id="editing-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div id="current-user" data-id-user="<?php echo $_SESSION['user_id']; ?>"></div>
+            <div id="current-user" data-id-user="<?php echo $_SESSION['user_id']; ?>"></div>
                 <div class="modal-header">
                     <h5 class="modal-title">Editar el Perfil</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -155,6 +156,13 @@ if(isset($_FILES["fileImg"]["name"])) {
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <!-- Lógica del Frontend -->
+
     <script src="../app.js"></script>
+    <!--<script>
+        document.getElementById('bookmark-checked').addEventListener('click', function () {
+            document.getElementById('bookmark-empty').classList.toggle('d-none');
+            document.getElementById('bookmark-checked').classList.toggle('d-none');
+        });
+    </script>-->
 </body>
 </html>

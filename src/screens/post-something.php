@@ -53,13 +53,15 @@ if (isset($_SESSION["user_id"])) {
                 <div class="title-div mt-5 w-100">
                     <label for="title" id="title-label">Título de la Publicación</label>
                     <div class="input-div small-input w-100 d-flex justify-content-center">
-                        <input class="w-100" type="text" placeholder="Aquí va tu título" id="title" name="title" value="<?= !empty($_POST['title'])?$_POST['title']:''?>">
+                        <input class="w-100" type="text" placeholder="Aquí va tu título" id="title" 
+                            name="title" value="<?= !empty($_POST['title'])?$_POST['title']:''?>">
                     </div>
                 </div>
                 <div class="company-div mt-3 w-100">
                     <label for="company" id="company-label">Nombre de la Empresa</label>
                     <div class="input-div small-input w-100 d-flex justify-content-center">
-                        <input class="w-100" type="text" name="company" id="company" placeholder="Escibe el nombre de la empresa" value="<?= !empty($_POST['company'])?$_POST['company']:''?>">
+                        <input class="w-100" type="text" name="company" id="company" placeholder="Escibe el nombre de la empresa" 
+                            value="<?= !empty($_POST['company'])?$_POST['company']:''?>">
                     </div>
                 </div>
                 <p id="output"></p>
@@ -95,7 +97,8 @@ if (isset($_SESSION["user_id"])) {
                 <div class="description-div mt-3 w-100">
                     <label for="description" id="description-div">Descripción</label>
                     <div class="input-div big-input w-100 d-flex justify-content-center">
-                        <input class="w-100" type="text" name="description" id="description" placeholder="Describe tu experiencia" value="<?= !empty($_POST['description'])?$_POST['description']:''?>">
+                        <textarea class="w-100" name="description" id="description" placeholder="Describe tu experiencia" 
+                            value="<?= !empty($_POST['description'])?$_POST['description']:''?>"></textarea>
                     </div>
                 </div>
 
@@ -114,6 +117,7 @@ if (isset($_SESSION["user_id"])) {
 
         </footer>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>

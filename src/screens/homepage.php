@@ -115,11 +115,32 @@ session_start();
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <!-- Lógica del Frontend -->
     <script src="../app.js"></script>
+    
+    <!--<script>
+        //active search bar
+        document.getElementById('search-icon').addEventListener('click', function () {
+            document.getElementById('search-bar').classList.toggle('d-none');
+            document.getElementById('search-icon').classList.toggle('d-none');
+        });
+
+        //not bookmarked post
+        document.getElementById('bookmark-empty').addEventListener('click', function () {
+            document.getElementById('bookmark-checked').classList.toggle('d-none');
+            document.getElementById('bookmark-empty').classList.toggle('d-none');
+        });
+
+        //bookmarked post
+        document.getElementById('bookmark-checked').addEventListener('click', function () {
+            document.getElementById('bookmark-empty').classList.toggle('d-none');
+            document.getElementById('bookmark-checked').classList.toggle('d-none');
+        });
+
+    </script>-->
 </body>
 </html>
