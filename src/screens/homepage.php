@@ -34,9 +34,9 @@ if (isset($_SESSION["user_id"])) {
     
     <!-- Navbar -->
     <div class="navbar-expand-lg justify-content-center w-100">
-        <nav class=" navbar navbar-nav d-flex flex-row align-items-center">
-            <div class="navbar-icon mx-2 active-icon">
-                <a href="#"><i class="fa-solid fa-house"></i></a>
+        <nav class="navbar navbar-nav d-flex flex-row align-items-center">
+            <div class="navbar-icon mx-2">
+                <a href="#" class="active-icon"><i class="fa-solid fa-house"></i></a>
             </div>
             <div class="navbar-icon mx-2">
                 <a href="post-something.php"><i class="fa-solid fa-pen" id="publicar"></i></a>
