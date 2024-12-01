@@ -81,7 +81,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                 </div>
             </div>
             <div class="user-posts mt-5 d-flex flex-column col-6 justify-content-center align-items-center">
-                <div class="posted justify-content-center align-items-center bg-gradient">
+                <div class="posted justify-content-center align-items-center bg-gradient"  style="visibility: hidden;">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Mis Publicaciones</h2>
                     <div class="posts">
                         <div id="my-posts" class="p-4 mt-5 d-flex flex-row flex-wrap overflow-y w-100 justify-content-around">
@@ -89,7 +89,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                         </div>
                     </div>
                 </div>
-                <div class="bookmarked mt-4 justify-content-center align-items-center bg-gradient">
+                <div class="bookmarked mt-4 justify-content-center align-items-center bg-gradient"  style="visibility: hidden;">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Publicaciones Guardadas</h2>
                     <div class="posts">
                         <div id="my-bookposts" class="p-4 mt-5 d-flex flex-row flex-wrap w-100 justify-content-around" style="overflow-y: scroll;">
