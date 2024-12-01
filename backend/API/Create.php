@@ -10,7 +10,7 @@ class Create extends DataBase {
         parent::__construct($db, $user, $pass);
     }*/
 
-    public function __construct($db, $user='root', $pass='') {
+    public function __construct($db, $user='root', $pass='gaboas') {
         parent::__construct($db, $user, $pass);
     }
 

@@ -117,6 +117,7 @@ a:hover {
 .card {
     position: relative;
     overflow: hidden;
+    width: 300px;
 }
 
 /* twinkle twinkle little star oh i now wont have to wonder how you are */
@@ -367,4 +368,31 @@ textarea::placeholder {
     height: 5vmax!important;
     border-radius: 5px;
     border: 1px solid var(--grey);
+}
+/**/
+#checkboxList {
+    position: absolute;
+    top: 100%; /* Lo coloca justo debajo del ícono */
+    /*right: 0; /* Lo alinea a la derecha */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+    display: none; /* Inicialmente oculto */
+}
+
+#checkboxList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#checkboxList li {
+    padding: 5px 0;
+}
+
+#checkboxList li input {
+    margin-right: 10px;
 }

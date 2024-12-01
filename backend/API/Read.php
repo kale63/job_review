@@ -100,32 +100,11 @@ class Read extends DataBase {
         }
     }
 
-    public function listBoo($user) {
-        if( isset($user) ) {
-            // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-            if ( $result = $this->conexion->query("SELECT post.* FROM post JOIN guardado ON post.id = guardado.post_id WHERE guardado.user_id = {$user}") ) {
-                // SE OBTIENEN LOS RESULTADOS
-                $row = $result->fetch_assoc();
-    
-                if(!is_null($row)) {
-                    // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
-                    foreach($row as $key => $value) {
-                        $this->data[$key] = $value;
-                    }
-                }
-                $result->free();
-            } else {
-                die('Query Error: '.mysqli_error($this->conexion));
-            }
-            $this->conexion->close();
-        }
-    }
-
     public function listBook($user) {
         // SE VERIFICA HABER RECIBIDO EL ID
         if( isset($user) ) {
             // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-            $sql = "SELECT post.* FROM post JOIN guardado ON post.id = guardado.post_id WHERE guardado.user_id = {$user}";
+            $sql = "SELECT post.* FROM post LEFT JOIN guardado ON post.id = guardado.post_id WHERE guardado.user_id = {$user}";
             if ( $result = $this->conexion->query($sql) ) {
                 // SE OBTIENEN LOS RESULTADOS
                 $rows = $result->fetch_all(MYSQLI_ASSOC);
