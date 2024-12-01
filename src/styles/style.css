@@ -270,6 +270,14 @@ textarea::placeholder {
     background-color: var(--red)!important;
 }
 
+.posts, .bookmarked .posts {
+    max-height: 400px; 
+    overflow-y: auto;  
+    padding-right: 10px;/* Adds vertical scrollbar */
+    width: 100%; /* Ensures the width stays fixed */
+    box-sizing: border-box;
+}
+
 /* Edit form */
 
 .bio-edit {

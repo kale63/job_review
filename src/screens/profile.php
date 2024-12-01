@@ -8,7 +8,7 @@ if (!isset($_SESSION["user_id"])) {
 if (isset($_SESSION["user_id"])) {
     $my_sqli = require __DIR__ ."../../../backend/db.php";
 
-    $sql = "SELECT * FROM users
+    $sql = "SELECT * FROM user
             WHERE id = {$_SESSION["user_id"]}";
 
     $result = $my_sqli->query($sql);
@@ -67,7 +67,7 @@ if(isset($_FILES["fileImg"]["name"])) {
          <div class="profile-div w-100 d-flex flex-row justify-content-center align-items-start">
             <div class="user-info mx-5 d-flex flex-column col-4 mt-5 justify-content-center align-items-center">
                 <div class="profile-pic w-100 mb-5 d-flex justify-content-center align-items-center">
-                    <img src="../img/profile-defualt.jpg" class="user-pic rounded-circle w-80" alt="profile picture" id="profilePic">
+                    <img src="https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg" class="user-pic rounded-circle w-80" alt="profile picture" id="profilePic">
                 </div>
                 <div class="username">
                     <h3>Username</h3>
@@ -116,7 +116,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                     <div class="modal-body d-flex flex-column col-4 mt-2 justify-content-center align-items-center w-100">
                         <div class="upload w-75">
                             <div class="profile-pic w-100 mb-5 d-flex justify-content-center align-items-center">
-                                <img src="../img/profile-defualt.jpg" class="user-pic w-75" alt="profile picture" id="edit-pic">
+                                <img src="https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg" class="user-pic w-75" alt="profile picture" id="edit-pic">
                             </div>
                             <div class="right d-flex flex-row" id="upload">
                                 <input type="file" name="fileImg" id="fileImg" accept=".jpg, .jpeg, .png">

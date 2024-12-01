@@ -14,15 +14,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/morph/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/2a6aa53490.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/style.css"></body>
-    <title>Publicar Algo</title>
+    <title>Job Review</title>
 </head>
 <body>
-    <!--<?php if (isset($_SESSION["user_id"])) : ?>
-        <p>Iniciaste sesión!</p>
-        <?php else: ?>
-        <p><a href="login.php">Inicia sesión</a> o <a href="signup.html">regístrate</a> para ver el contenido.</p>
-    <?php endif; ?>-->
-    
     <!-- Navbar -->
     <div class="navbar navbar-expand-lg justify-content-center w-100">
         <nav class="navbar-nav d-flex flex-row align-items-center">
