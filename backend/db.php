@@ -1,9 +1,9 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'job_review';
+$dbname = 'marketzone';
 $username = 'root';
-$password = '';
+$password = 'gaboas';
 
 $my_sqli = new mysqli($host, $username, $password, $dbname);
 

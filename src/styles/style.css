@@ -101,6 +101,7 @@ a:hover {
     overflow: hidden;
 }
 
+
 /* twinkle twinkle little star oh i now wont have to wonder how you are */
 
 .star {
@@ -298,3 +299,5 @@ input::placeholder {
 .upload input::-webkit-file-upload-button, .upload input[type=submit] {
     cursor: pointer;
 }
+
+

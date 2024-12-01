@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["user_id"])) {
+        header("Location: login.php");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +47,7 @@
             <div class="rating mt-5 w-100 d-flex flex-column justify-content-center align-items-center">
                 <h6>Mira los posts de la comunidad para ver qué opinan del trabajo en México</h6>
                 <button class="btn btn-outline-secondary mt-3 home-btn">Ver posts</button>
-            </div>
+            </div>  
             <div class="info-tab mt-5">
                 <div class="container px-4 py-2 mt-5" id="featured-3">
                     <h3 class="pb-2 border-bottom signup-title d-flex justify-content-center">Aprende sobre el objetivo 8 de los ODS</h3>
@@ -83,7 +90,10 @@
             </div>
         </div>   
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <!-- Lógica del Frontend -->
     <script src="../app.js"></script>
 </body>
 </html>
