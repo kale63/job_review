@@ -3,6 +3,7 @@
     --white : #f8f9fa;
     --blue : #d9e3f1;
     --bluer : #9abbe9;
+    --greener: #0f9066;
     --cream : #f1e7d9;
     --grey : #8c939c;
     --red : #9f4a39;
@@ -11,6 +12,10 @@
 body {
     margin: 0 auto;
     background-color: var(--blue)!important;
+}
+
+p {
+    font-size: large;
 }
 
 /**** SIGN UP & LOGIN ****/
@@ -54,6 +59,18 @@ body {
     font-size: 1.5vmax;
     font-weight: bold;
     background-color: var(--bluer)!important;
+}
+
+
+.no-underline {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--cream)!important;
+}
+
+.external-link {
+    color: var(--green);
+    text-decoration-color: var(--green);
 }
 
 /******* HOOMEE ******/
@@ -272,10 +289,24 @@ textarea::placeholder {
 .posts, .bookmarked .posts {
     max-height: 400px; 
     overflow-y: auto;  
-    padding-right: 10px;/* Adds vertical scrollbar */
-    width: 100%; /* Ensures the width stays fixed */
+    padding-right: 10px;
+    width: 100%; 
     box-sizing: border-box;
 }
+
+#empty-posted p {
+    margin: 0; 
+}
+
+#empty-posted a {
+    color: var(--greener);
+    text-decoration: none; 
+}
+
+#empty-posted a:hover {
+    text-decoration: underline; 
+}
+
 
 /* Edit form */
 
@@ -367,4 +398,27 @@ textarea::placeholder {
     height: 5vmax!important;
     border-radius: 5px;
     border: 1px solid var(--grey);
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+  }
+
+::-webkit-scrollbar-track {
+    background-color: var(--white);
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background-color: transparent!important;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--grey);
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--green);
 }

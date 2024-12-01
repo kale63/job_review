@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'job_review';
+$dbname = 'marketzone';
 $username = 'root';
 $password = '';
 
