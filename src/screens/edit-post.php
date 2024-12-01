@@ -1,3 +1,32 @@
+<?php
+include 'db.php'; 
+
+$title = "";
+$company = "";
+$rating = 0;
+$description = "";
+
+if (isset($_GET['post_id'])) {
+    $postId = intval($_GET['post_id']);
+    
+    $query = $conn->prepare("SELECT title, company, rating, description FROM posts WHERE post_id = ?");
+    $query->bind_param("i", $postId);
+    $query->execute();
+    $result = $query->get_result();
+    
+    if ($result->num_rows > 0) {
+        $post = $result->fetch_assoc();
+        $title = $post['title'];
+        $company = $post['company'];
+        $rating = $post['rating'];
+        $description = $post['description'];
+    } else {
+        echo "<script>alert('No se encontró la publicación.'); window.location.href='homepage.php';</script>";
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,41 +63,43 @@
     <!-- Post-it -->
     <div class="pretty-bg mt-3">
          <div class="write-post w-100 d-flex justify-content-center align-items-center">
-            <form action="" method="POST" class="w-75 d-flex flex-column justify-content-center align-items-center">
+            <form action="update-post.php" method="POST" class="w-75 d-flex flex-column justify-content-center align-items-center">
+                <input type="hidden" name="post_id" value="<?php echo $postId; ?>">
+
                 <div class="title-div mt-5 w-100">
                     <label for="title" id="title-label">Título de la Publicación</label>
                     <div class="input-div small-input w-100 d-flex justify-content-center">
-                        <input class="w-100" type="text" placeholder="Aquí va tu título" id="title" name="title">
+                        <input class="w-100" type="text" id="title" name="title" value="<?php echo htmlspecialchars($title); ?>">
                     </div>
                 </div>
+
                 <div class="company-div mt-3 w-100">
                     <label for="company" id="company-label">Nombre de la Empresa</label>
                     <div class="input-div small-input w-100 d-flex justify-content-center">
-                        <input class="w-100" type="text" name="company" id="company" placeholder="Escibe el nombre de la empresa">
+                        <input class="w-100" type="text" id="company" name="company" value="<?php echo htmlspecialchars($company); ?>">
                     </div>
                 </div>
-                <p id="output"></p>
+
                 <div class="rating-div mt-3 w-100">
                     <div class="rating w-100 d-flex flex-column">
                         <label id="rating-label">¿Qué calificación le das a la empresa?</label>
                         <div class="star-div d-flex flex-row">
-                            <span onclick="gfg(1)" class="star-rating">★</span>
-                            <span onclick="gfg(2)" class="star-rating">★</span>
-                            <span onclick="gfg(3)" class="star-rating">★</span>
-                            <span onclick="gfg(4)" class="star-rating">★</span>
-                            <span onclick="gfg(5)" class="star-rating">★</span>
+                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                <span onclick="gfg(<?php echo $i; ?>)" class="star-rating <?php echo ($i <= $rating) ? 'selected' : ''; ?>">★</span>
+                            <?php endfor; ?>
                         </div>
                     </div>
                 </div>
+
                 <div class="description-div mt-3 w-100">
                     <label for="description" id="description-div">Descripción</label>
                     <div class="input-div big-input w-100 d-flex justify-content-center">
-                        <textarea class="w-100" name="description" id="description" placeholder="Describe tu experiencia"></textarea>
+                        <textarea class="w-100" id="description" name="description"><?php echo htmlspecialchars($description); ?></textarea>
                     </div>
                 </div>
 
                 <div class="btn-div w-25 mt-4 mb-5">
-                    <button type="submit" class="btn post-btn w-100 btn-outline-success">Publicar</button>
+                    <button type="submit" class="btn post-btn w-100 btn-outline-success">Actualizar</button>
                 </div>
             </form>
         </div>   

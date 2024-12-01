@@ -2,9 +2,9 @@
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-    $my_sqli = require __DIR__ . "../../../backend/API/Database.php";
+    $my_sqli = require __DIR__ . "../../../backend/db.php";
 
-    $sql = "SELECT * FROM user
+    $sql = "SELECT * FROM users
             WHERE id = {$_SESSION["user_id"]}";
 
     $result = $my_sqli->query($sql);
@@ -22,7 +22,7 @@ if(isset($_FILES["fileImg"]["name"])) {
 
     move_uploaded_file($src, $target);
 
-    $query = "UPDATE user SET image = '$imageName' WHERE id = $user_id";
+    $query = "UPDATE users SET image = '$imageName' WHERE id = $user_id";
     mysqli_query($conexion, $query);
 }
 ?>
@@ -50,6 +50,7 @@ if(isset($_FILES["fileImg"]["name"])) {
         <nav class="navbar-nav w-100 d-flex flex-row justify-content-around">
             <div class="navbar-icon mx-2">
                 <a href="homepage.php"><i class="fa-solid fa-house"></i></a>
+                <a href="index.php" class="mx-5"><i class="fa-solid fa-circle-info"></i></a>
             </div>
             <div class="navbar-icon mx-2">
                 <a href="profile.php" class="logout">Cerrar Sesión   <i class="fa-solid fa-right-to-bracket"></i></a>
@@ -92,10 +93,12 @@ if(isset($_FILES["fileImg"]["name"])) {
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     <div class="posts-btn-div d-flex flex-row justify-content-around w-100">
                                         <div class="edit" id="edit-btn">
-                                            <button class="btn edit-btn btn-outline-secondary">Editar</button>
+                                            <button class="btn edit-btn btn-outline-secondary"
+                                                onclick="editPost(<?php echo $postId; ?>)">Editar</button>
                                         </div>
                                         <div class="delete" id="delete-btn">
-                                            <button class="btn delete-btn btn-outline-secondary">Eliminar</button>
+                                            <button class="btn delete-btn btn-outline-secondary"
+                                                onclick="confirmDelete(<?php echo $postId; ?>)">Eliminar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -164,21 +167,21 @@ if(isset($_FILES["fileImg"]["name"])) {
                     <span aria-hidden="true"></span>
                     </button>
                 </div>
-                <form action="" enctype="multipart/form-data" method="post">
-                    <div class="modal-body d-flex flex-column col-4 mt-5 justify-content-center align-items-center">
-                        <div class="upload">
+                <form action="" enctype="multipart/form-data" method="post" class="w-100">
+                    <div class="modal-body d-flex flex-column col-4 mt-2 justify-content-center align-items-center w-100">
+                        <div class="upload w-75">
                             <div class="profile-pic w-100 mb-5 d-flex justify-content-center align-items-center">
-                                <img src="../img/profile-defualt.jpg" class="user-pic rounded-circle w-80" alt="profile picture" id="edit-pic">
+                                <img src="../img/profile-defualt.jpg" class="user-pic w-75" alt="profile picture" id="edit-pic">
                             </div>
                             <div class="right d-flex flex-row" id="upload">
                                 <input type="file" name="fileImg" id="fileImg" accept=".jpg, .jpeg, .png">
                                 <i class="fa-solid fa-camera"></i>
                             </div>
-                            <div class="left" id="cancel" style="display: none;">
+                            <div class="left d-flex" id="cancel" style="visibility: hidden;">
                                 <i class="fa-solid fa-xmark"></i>
                             </div>
-                            <div class="right" id="confirm" style="display: none;">
-                                <input type="submit" name="" value="">
+                            <div class="right d-flex" id="confirm" style="visibility: hidden;">
+                                <input type="submit" name="" id="imgAccept" value="">
                                 <i class="fa-solid fa-check"></i>
                             </div>
                         </div>
@@ -187,9 +190,11 @@ if(isset($_FILES["fileImg"]["name"])) {
                             <label class="edit-label" for="user-edit">Nombre de Usuario</label>
                             <input type="text" name="user-edit" id="user-edit" placeholder="Elige un nuevo nombre de usuario disponible">
                         </div>-->
-                        <div class="bio">
+                        <div class="bio d-flex flex-column w-75">
                             <label class="edit-label" for="bio-edit">Descripción</label>
-                            <input type="text" name="bio-edit" id="bio-edit" placeholder="Escribe una nueva descripción">
+                            <div class="input-div less-small-input">
+                                <textarea name="bio-edit" id="bio-edit" class="w-100" placeholder="Escribe una nueva descripción..." rows="4" cols="50"></textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

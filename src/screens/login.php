@@ -39,11 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body class="white-body">
     <div class="signup-page w-100 d-flex flex-row align-content-center justify-content-around">
-        <div class="welcome-img w-70 d-flex align-content-center">
-            <img src="../img/placeholder.gif" class="w-80 mx-5 mt-5">
+        <div class="welcome-back w-50 d-flex justify-content-center">
+            <img src="https://i.pinimg.com/736x/2a/97/23/2a9723d9809b015cb29c8479ce31ce23.jpg" class="d-flex justify-content-center">
         </div>
 
-        <div class="signup w-40 mt-5">
+        <div class="signup w-50 mt-5">
             <h1 class="signup-title">Inicio de Sesión</h1>
 
             <?php if ($is_invalid): ?>
