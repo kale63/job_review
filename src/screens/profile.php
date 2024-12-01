@@ -68,7 +68,7 @@ if(isset($_FILES["fileImg"]["name"])) {
          <div class="profile-div w-100 d-flex flex-row justify-content-center align-items-start">
             <div class="user-info mx-5 d-flex flex-column col-4 mt-5 justify-content-center align-items-center">
                 <div class="profile-pic w-100 mb-5 d-flex justify-content-center align-items-center">
-                    <img src="https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg" class="user-pic rounded-circle w-80" alt="profile picture" id="profilePic">
+                    <img src="https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg" class="user-pic rounded-circle w-75" alt="profile picture" id="profilePic">
                 </div>
                 <div class="username">
                     <h3>Username</h3>
@@ -82,19 +82,25 @@ if(isset($_FILES["fileImg"]["name"])) {
                 </div>
             </div>
             <div class="user-posts mt-5 d-flex flex-column col-6 justify-content-center align-items-center">
-                <div class="posted justify-content-center align-items-center bg-gradient"  style="visibility: visible;">
+                <div class="posted d-flex flex-column justify-content-center align-items-center bg-gradient w-100">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Mis Publicaciones</h2>
-                    <div class="posts">
-                        <div id="my-posts" class="p-4 mt-1 d-flex flex-row flex-wrap w-100 justify-content-around">
-                            
+                    <div class="posts scrollbar">
+                        <div id="my-posts" class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
+                         
+                        </div>
+                        <div id="empty-posted" class="w-100 mb-4 d-flex justify-content-center">
+                            <p><a href="post-something.php">¡Publica algo</a> para que tus publicaciones aparezcan aquí!</p>
                         </div>
                     </div>
                 </div>
-                <div class="bookmarked mt-4 justify-content-center align-items-center bg-gradient"  style="visibility: visible;">
+                <div class="bookmarked mt-4 justify-content-center align-items-center bg-gradient w-100">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Publicaciones Guardadas</h2>
-                    <div class="posts">
-                        <div id="my-bookposts" class="p-4 mt-1 d-flex flex-row flex-wrap w-100 justify-content-around">
+                    <div class="posts scrollbar">
+                        <div id="my-bookposts" class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
 
+                        </div>
+                        <div id="empty-posted" class="w-100 mb-4 d-flex justify-content-center">
+                            <p><a href="homepage.php">¡Las publicaciones</a> que guardes aparecerán aquí!</p>
                         </div>
                     </div>
                 </div>
