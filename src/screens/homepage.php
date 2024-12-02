@@ -43,7 +43,7 @@ if (isset($_SESSION["user_id"])) {
             </div>
             <div class="input-group mx-2" id="search-bar">
                 <input id="search-icon" type="text" class="form-control" placeholder="Búsqueda" aria-describedby="button-addon">
-                <button class="btn btn-primary" type="button" id="button-addon">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
