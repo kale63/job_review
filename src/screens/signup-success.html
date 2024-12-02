@@ -7,14 +7,47 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/morph/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/2a6aa53490.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <style>
+        :root {
+            --img: url('https://i.pinimg.com/originals/9b/88/a8/9b88a83e0105f5e3c174e53a615ce588.gif');
+        }
+
+        h1, p {
+            color: #742d98;
+            opacity: 1!important;
+        }
+
+        a {
+            color: #f13360!important;
+        }
+
+        a:hover {
+            color: #f13360!important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            background-image: var(--img) !important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>    
     <title>Registro Exitoso</title>
 </head>
 <body class="white-body">
-    <div class="w-100 mt-5 mt-5 d-flex justify-content-center flex-column">
+    <div class="w-100 mt-5 mt-5 d-flex justify-content-center flex-column registered">
         <h1 class="signup-title mt-5 d-flex justify-content-center">🎉🎉</h1>
         <h1 class="signup-title d-flex justify-content-center">¡Registro Exitoso!</h1>
 
-        <p class="mt-4 d-flex justify-content-center">Has creado una cuenta en Job Review. Ahora puedes    <a href="login.php"> iniciar sesión.</a></p>
+        <div id="empty-posted" class="w-100 mb-4 d-flex justify-content-center">
+            <p class="mt-4 mb-4 d-flex justify-content-center">Has creado una cuenta en Job Review. Ahora puedes <a href="login.php" class="mx-1"> iniciar sesión.</a></p>
+        </div>
     </div>
     
 </body>

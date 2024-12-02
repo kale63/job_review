@@ -54,6 +54,9 @@ if (isset($_SESSION["user_id"])) {
                 <a href="profile.php"><i class="fa-solid fa-user"></i></a>
                 <div id="current-user" data-id-user="<?php echo $_SESSION['user_id']; ?>"></div>
             </div>
+            <div class="navbar-icon mx-2">
+                <a href="index.php"><i class="fa-solid fa-circle-info"></i></a>
+            </div>
         </nav>
     </div>
     

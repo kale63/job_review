@@ -33,7 +33,7 @@
             <!-- Info -->
             <div class="rating mt-5 w-100 d-flex flex-column justify-content-center align-items-center">
                 <h6>Mira los posts de la comunidad para ver qué opinan del trabajo en México</h6>
-                <button class="btn btn-outline-secondary mt-3 home-btn"><a href="homepage.php" class="no-underline">Ver posts</a></button>
+                <button class="btn btn-outline-secondary mt-3 home-btn"><a href="homepage.php" class="no-underline">Ver post  <i class="fa-solid fa-chevron-right"></i></a></button>
             </div>
             <div class="info-tab mt-5">
                 <div class="container px-4 py-2 mt-5" id="featured-3">
