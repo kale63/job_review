@@ -466,11 +466,11 @@ $('#cancel').click(function() {
                 descIn.type = 'text';
                 descIn.name = 'description';
                 descIn.value = post.description;
-                form.appendChild(descIn);	
+                form.appendChild(descIn);   	
 
                 form.method = 'POST';
-                //form.action = 'http://penguin.linux.test/proyecto-tecweb/job_review/src/screens/post-something.php';
-                form.action = '../../backend/post-something.php';  
+                form.action = 'http://penguin.linux.test/proyecto-tecweb/job_review/src/screens/post-something.php';
+                //form.action = '../../backend/post-something.php';  
 
                 document.body.appendChild(form);
                 form.submit();
@@ -539,7 +539,7 @@ $('#cancel').click(function() {
                 }
             }
             $('#rating-average').html(starAverage);
-            $('#rating').text(average+"/5");
+            $('#rating').text(average.toFixed(2)+"/5");
         }
     }
 });

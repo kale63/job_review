@@ -75,7 +75,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                 </div>
                 <div class="bio">
                     <h6 class="bio-title">Descripción</h6>
-                    <p class="bio-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga laborum fugiat autem facilis asperiores praesentium.</p>
+                    <p id="profile-desc" class="bio-text">Nomás ando viendo gracias</p>
                     <div class="btn-div">
                         <button class="edit-btn btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#editing-modal">Editar</button>
                     </div>
