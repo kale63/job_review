@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION["user_id"])) {
+/*if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit;
-}
+}*/
 if (isset($_SESSION["user_id"])) {
     $my_sqli = require __DIR__ . "../../../backend/API/Database.php";
 
@@ -42,6 +42,9 @@ if (isset($_SESSION["user_id"])) {
             <div class="navbar-icon mx-2">
                 <a href="profile.php"><i class="fa-solid fa-user"></i></a>
                 <div id="current-user" data-id-user="<?php echo $_SESSION['user_id']; ?>"></div>
+            </div>
+            <div class="navbar-icon mx-2">
+                <a href="index.php"><i class="fa-solid fa-circle-info"></i></a>
             </div>
         </nav>
     </div>
@@ -97,8 +100,9 @@ if (isset($_SESSION["user_id"])) {
                 <div class="description-div mt-3 w-100">
                     <label for="description" id="description-div">Descripción</label>
                     <div class="input-div big-input w-100 d-flex justify-content-center">
-                        <textarea class="w-100" name="description" id="description" placeholder="Describe tu experiencia"><?= !empty($_POST['description'])?$_POST['description']:''?>
-                        </textarea>
+                    <textarea class="w-100" name="description" id="description" placeholder="Describe tu experiencia">
+                        <?= !empty($_POST['description'])?$_POST['description']:''?>
+                    </textarea>
                     </div>
                 </div>
 

@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-/*if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit;
-}*/
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +32,7 @@ session_start();
             </div>
             <div class="input-group mx-2" id="search-bar">
                 <input id="search-icon" type="text" class="form-control" placeholder="Búsqueda" aria-describedby="button-addon">
-                <button class="btn btn-primary" type="button" id="button-addon">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -55,6 +51,9 @@ session_start();
             <div class="navbar-icon mx-2">
                 <a href="profile.php"><i class="fa-solid fa-user"></i></a>
                 <div id="current-user" data-id-user="<?php echo $_SESSION['user_id']; ?>"></div>
+            </div>
+            <div class="navbar-icon mx-2">
+                <a href="index.php"><i class="fa-solid fa-circle-info"></i></a>
             </div>
         </nav>
     </div>  

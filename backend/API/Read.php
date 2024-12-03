@@ -7,6 +7,7 @@ require_once __DIR__ . '/Database.php';
 class Read extends DataBase {
 
     public function __construct($db, $user='root', $pass='gaboas') {
+    public function __construct($db, $user='root', $pass='gaboas') {
         parent::__construct($db, $user, $pass);
     }
 
@@ -104,6 +105,7 @@ class Read extends DataBase {
         // SE VERIFICA HABER RECIBIDO EL ID
         if( isset($user) ) {
             // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
+            $sql = "SELECT post.* FROM post LEFT JOIN guardado ON post.id = guardado.post_id WHERE guardado.user_id = {$user}";
             $sql = "SELECT post.* FROM post LEFT JOIN guardado ON post.id = guardado.post_id WHERE guardado.user_id = {$user}";
             if ( $result = $this->conexion->query($sql) ) {
                 // SE OBTIENEN LOS RESULTADOS
