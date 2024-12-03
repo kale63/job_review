@@ -5,7 +5,7 @@ $is_invalid = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $my_sqli = require __DIR__ . "../../../backend/db.php";
 
-    $sql = sprintf("SELECT * FROM users WHERE email = '%s'",
+    $sql = sprintf("SELECT * FROM user WHERE email = '%s'",
                     $my_sqli->real_escape_string($_POST["email"]));
     
     $result = $my_sqli->query($sql);

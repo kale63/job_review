@@ -85,7 +85,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                 <div class="posted d-flex flex-column justify-content-center align-items-center bg-gradient w-100">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Mis Publicaciones</h2>
                     <div class="posts scrollbar">
-                        <div id="my-posts" class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
+                        <div id="my-posts" class="p-4 mt-1 d-flex flex-row flex-wrap w-100 justify-content-around">
                          
                         </div>
                         <div id="empty-posted" class="w-100 mb-4 d-flex justify-content-center">
@@ -96,7 +96,7 @@ if(isset($_FILES["fileImg"]["name"])) {
                 <div class="bookmarked mt-4 justify-content-center align-items-center bg-gradient w-100">
                     <h2 class="section-title mt-3 d-flex justify-content-center align-items-center">Publicaciones Guardadas</h2>
                     <div class="posts scrollbar">
-                        <div id="my-bookposts" class="p-4 mt-1 d-flex flex-row w-100 justify-content-around">
+                        <div id="my-bookposts" class="p-4 mt-1 d-flex flex-row flex-wrap w-100 justify-content-around">
 
                         </div>
                         <div id="empty-posted" class="w-100 mb-4 d-flex justify-content-center">

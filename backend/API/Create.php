@@ -6,11 +6,7 @@ require_once __DIR__ .'/Database.php';
 
 class Create extends DataBase {
 
-    /*public function __construct($db, $user='root', $pass='gaboas') {
-        parent::__construct($db, $user, $pass);
-    }*/
-
-    public function __construct($db, $user='root', $pass='') {
+    public function __construct($db, $user='root', $pass='gaboas') {
         parent::__construct($db, $user, $pass);
     }
 
