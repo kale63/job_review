@@ -4,7 +4,7 @@ session_start();
 /*if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit;
-}*/
+}
 
 if (isset($_SESSION["user_id"])) {
     $my_sqli = require __DIR__ . "../../../backend/db.php";
@@ -29,7 +29,7 @@ if(isset($_FILES["fileImg"]["name"])) {
 
     $query = "UPDATE user SET image = '$imageName' WHERE id = $user_id";
     mysqli_query($my_sqli, $query);
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -63,19 +63,19 @@ if(isset($_FILES["fileImg"]["name"])) {
         </nav>
     </div>
 
-    <!-- profile -->
+    <!-- profile https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg -->
     <div class="pretty-bg mt-5 mb-5">
          <div class="profile-div w-100 d-flex flex-row justify-content-center align-items-start">
             <div class="user-info mx-5 d-flex flex-column col-4 mt-5 justify-content-center align-items-center">
                 <div class="profile-pic w-100 mb-5 d-flex justify-content-center align-items-center">
-                    <img src="https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg" class="user-pic rounded-circle w-75" alt="profile picture" id="profilePic">
+                    <img src="" class="user-pic rounded-circle w-75" alt="profile picture" id="profilePic">
                 </div>
                 <div class="username">
-                    <h3>Username</h3>
+                    <h3 id="username"></h3>
                 </div>
                 <div class="bio">
                     <h6 class="bio-title">Descripción</h6>
-                    <p class="bio-text" id="bio">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga laborum fugiat autem facilis asperiores praesentium.</p>
+                    <p class="bio-text" id="bio"></p>
                     <div class="btn-div">
                         <button class="edit-btn btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#editing-modal">Editar</button>
                     </div>
@@ -119,14 +119,14 @@ if(isset($_FILES["fileImg"]["name"])) {
                     <span aria-hidden="true"></span>
                     </button>
                 </div>
-                <form action="" enctype="multipart/form-data" method="post" class="w-100">
+                <form id="editProfileForm" enctype="multipart/form-data" class="w-100">
                     <div class="modal-body d-flex flex-column col-4 mt-2 justify-content-center align-items-center w-100">
                         <div class="upload w-75">
                             <div class="profile-pic w-100 mb-5 d-flex justify-content-center align-items-center">
-                                <img src="https://i.pinimg.com/736x/14/95/4f/14954f57f9f17d6c6edfd37251921bcd.jpg" class="user-pic w-75" alt="profile picture" id="edit-pic">
+                                <img src="" class="user-pic w-75" alt="profile picture" id="edit-pic">
                             </div>
                             <div class="right d-flex flex-row" id="upload">
-                                <input type="file" name="fileImg" id="fileImg" accept=".jpg, .jpeg, .png">
+                                <input type="file" name="fileImg" id="fileImg" accept=".jpg, .jpeg, .png, .gif">
                                 <i class="fa-solid fa-camera"></i>
                             </div>
                             <div class="left d-flex" id="cancel" style="visibility: hidden;">

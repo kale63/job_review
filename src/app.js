@@ -128,6 +128,7 @@ function remove() {
 }
 
 botonAddEdit();
+getUser(currentuser);
 
 function botonAddEdit(){
     console.log(edit);
@@ -423,6 +424,7 @@ $('#cancel').click(function() {
             $.post('../../backend/post-delete.php', {id}, (response) => {
                 //$('#my-posts').hide();
                 listarPostsPerfil();
+                element.remove();
             });
         }
     });
@@ -516,6 +518,56 @@ $('#cancel').click(function() {
             });
         }
     });
+
+    function getUser(userId){
+        $.ajax({
+            url: '../../backend/user-get.php',
+            data: { userId: userId },
+            method: 'POST',
+            success: function(response) {
+                console.log(response);
+                let user = JSON.parse(response);
+                    // Actualizar imagen de perfil, nombre y biografía
+                    $('#profilePic').attr('src', '../img/' + user.image);
+                    $('#username').text(user.username);
+                    $('#bio').text(user.info);
+    
+                    // Prellenar el formulario de edición con los datos actuales
+                    $('#edit-pic').attr('src', '../img/' + user.image);
+                    $('#bio-edit').val(user.info);
+            }
+        });
+    }
+
+    // Enviar cambios de perfil
+    $('#editProfileForm').submit(function(e) {
+        e.preventDefault();  // Evitar el envío por defecto del formulario
+        var formData = new FormData();
+        var file = $('#fileImg')[0].files[0];
+        if (file) {
+            formData.append('file', file);
+        }
+        var desc = $('#bio-edit').val();
+        if (desc) {
+            formData.append('bio', desc);
+        }
+        formData.append('id', currentuser);
+        console.log("id: " + formData.get('id'));  // Muestra el ID
+        console.log("bio: " + formData.get('bio'));  // Muestra la bio
+        console.log("image: " + (file ? file.name : "No se ha seleccionado imagen"));
+        $.ajax({
+            url: '../../backend/user-set.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                console.log(response);
+                getUser(currentuser);
+            }
+        });
+    });
+    
 
     function aveGrade(){
         console.log(sumPosts);
