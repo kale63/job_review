@@ -1,6 +1,6 @@
 <?php
     use Backend\API\User;
-    require_once __DIR__.'/API/User.php';
+    require_once __DIR__.'/vendor/autoload.php';
 
     $jsonOBJ = [
         'id' => $_POST['id']

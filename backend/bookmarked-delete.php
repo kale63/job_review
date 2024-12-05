@@ -1,6 +1,6 @@
 <?php
     use Backend\API\Delete;
-    require_once __DIR__.'/API/Delete.php';
+    require_once __DIR__.'/vendor/autoload.php';
 
     $posts = new Delete('marketzone');
     $post = file_get_contents('php://input');
