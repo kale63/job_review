@@ -22,7 +22,7 @@ class Delete extends DataBase {
             $sql = "UPDATE post SET eliminado=1 WHERE id = {$id}";
             if ( $this->conexion->query($sql) ) {
                 $this->data['status'] =  "success";
-                $this->data['message'] =  "Producto eliminado";
+                $this->data['message'] =  "Post eliminado";
             } else {
                 $this->data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($this->conexion);
             }
@@ -42,7 +42,7 @@ class Delete extends DataBase {
             $sql = "DELETE FROM guardado WHERE user_id = {$jsonOBJ->user} AND post_id = {$jsonOBJ->post}";
             if ( $this->conexion->query($sql) ) {
                 $this->data['status'] =  "success";
-                $this->data['message'] =  "Producto eliminado de guardados";
+                $this->data['message'] =  "Post eliminado de guardados";
             } else {
                 $this->data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($this->conexion);
             }
@@ -51,5 +51,5 @@ class Delete extends DataBase {
     }
 }
 
-//$productos = new Productos();
+//$posts = new posts();
 ?>

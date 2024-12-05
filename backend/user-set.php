@@ -32,9 +32,9 @@
     }
 
     if(isset($jsonOBJ['image']) || isset($jsonOBJ['bio'])){
-        $productos = new User('marketzone');
-        $productos->updateProfile($jsonOBJ);
-        echo $productos->getData();
+        $posts = new User('marketzone');
+        $posts->updateProfile($jsonOBJ);
+        echo $posts->getData();
     }else{
         $data = array(
             'status'  => 'error',

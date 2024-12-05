@@ -33,5 +33,5 @@ class Update extends DataBase {
     }
 }
 
-//$productos = new Productos();
+//$posts = new posts();
 ?>

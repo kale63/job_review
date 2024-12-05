@@ -127,5 +127,5 @@ class Read extends DataBase {
     }
 }
 
-//$productos = new Productos();
+//$posts = new posts();
 ?>

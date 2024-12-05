@@ -19,7 +19,7 @@
             <h1 class="signup-title">Registro de Usuarios</h1>
     
             <div class="registro mt-5">
-                <form action="../process-signup.php" method="POST" novalidate>
+                <form id="signup-form" novalidate>
                     <div class="username-div mt-3 w-100">
                         <label for="username" id="username-label">Nombre de Usuario</label>
                         <div class="input-div smaller-input w-80 d-flex">
@@ -50,10 +50,15 @@
                     </div>
                 </form>
                 <div class="login-a mt-4 d-flex justify-content-center">
-                    <p>¿Ya tienes una cuenta? <a href="login.php">Inicia Sesión</a></p>
+                    <p>¿Ya tienes una cuenta? <a href="login.html">Inicia Sesión</a></p>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <!-- Lógica del Frontend -->
+    <script src="../app.js"></script>
 </body>
 </html>

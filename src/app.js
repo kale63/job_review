@@ -72,6 +72,7 @@ $(document).ready(function(){
         listarPostsInicio();  
     });
 
+    $('#error-login').hide();
 //let stars = document.getElementsByClassName("star-rating");
 let stars = $(".star-rating");
 //let output = document.getElementById("output");
@@ -162,6 +163,66 @@ $('#cancel').click(function() {
     listarPostsGuardados();
     listarPostsInicio();
     listarPostsPerfil();
+
+    $('#login-form').submit(function(e){
+        e.preventDefault();
+        $('#error-login').hide();
+
+        let email = $('#email').val();
+        let password = $('#password').val();
+
+        if (!email || !password) {
+            alert('Completa todos los campos');
+            return;
+        }
+        
+        $.post(
+            '../../backend/user-login.php',
+            {email, password},
+            function(response){
+                let respuesta = JSON.parse(response);
+                if (respuesta.status === 'success') {
+                    window.location.href = 'index.php';
+                    console.log(respuesta);
+                } else {
+                    $('#error-login').show();
+                    $('#email').val(email);
+                }
+            }
+        );
+    });
+
+    $('#signup-form').submit(function(e){
+        e.preventDefault();
+
+        signupJSON = {
+            username: $('#username').val(),
+            email: $('#email').val(),
+            password: $('#password').val(),
+            confirm: $('#password-confirm').val()
+        };
+
+        let errores = validarRegistro(signupJSON);
+
+        // Mostrar errores
+        if (errores.length > 0) {
+            alert(errores.join('\n'));
+            return; // Detener el envío del formulario si hay errores
+        }
+        JsonString = JSON.stringify(signupJSON,null,2);
+        console.log(JsonString);
+        $.post('../../backend/user-signup.php', JsonString, function(response) {
+            let respuesta = JSON.parse(response);
+            console.log(respuesta.message);
+            if(respuesta.status === 'success'){
+                window.location.href = '../../src/screens/signup-success.html';
+                console.log(respuesta);
+            }else{
+                alert(respuesta.message);
+            }
+        });
+
+    });
 
     $('#search-icon').keyup(function(e){
         if($('#search-icon').val()){
@@ -277,7 +338,7 @@ $('#cancel').click(function() {
                     sumGrades += postGrade;
                     sumPosts++;
                     });
-                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
+                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "posts"
                     $('#content-post').html(template);
                     aveGrade();
                 }
@@ -324,7 +385,7 @@ $('#cancel').click(function() {
                             </div>
                             `;
                     });
-                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
+                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "posts"
                     $('#my-posts').html(template);
                 }
             }
@@ -369,7 +430,7 @@ $('#cancel').click(function() {
                             </div>
                             `;
                     });
-                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
+                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "posts"
                     $('#my-bookposts').html(template);
                 }
             }
@@ -394,21 +455,21 @@ $('#cancel').click(function() {
                 description: $('#description').val()
             };
         
-        var errores = validarProducto(finalJSON);
+        var errores = validarPost(finalJSON);
 
         // Mostrar errores
         if (errores.length > 0) {
             alert(errores.join('\n'));
             return; // Detener el envío del formulario si hay errores
         }
-        productoJsonString = JSON.stringify(finalJSON,null,2);
-        console.log(productoJsonString);
+        postJsonString = JSON.stringify(finalJSON,null,2);
+        console.log(postJsonString);
         let url = edit === false ? '../../backend/post-add.php' : '../../backend/post-edit.php';
-        $.post(url, productoJsonString, function(response) {
+        $.post(url, postJsonString, function(response) {
             let respuesta = JSON.parse(response);
             console.log(respuesta.message);
             if(respuesta.status === 'success'){
-                //listarProductos();
+                //listarposts();
                 $('#post-form').trigger('reset');
                 edit = false;
                 botonAddEdit();
@@ -596,31 +657,66 @@ $('#cancel').click(function() {
     }
 });
 
-function validarProducto(producto) {
+function validarPost(post) {
     
     var errores = [];
 
     // Validación de title
-    if (!producto.title) {
+    if (!post.title) {
         errores.push('El título es requerido.');
     }
 
-    if(producto.title.length > 100){
+    if(post.title.length > 100){
         errores.push('El título no debe exceder los 100 caracteres.');
     }
 
     // Validación de company
-    if (!producto.company) {
+    if (!post.company) {
         errores.push('El nombre de la empresa es requerido.');
     }
 
-    if(producto.company.length > 100){
+    if(post.company.length > 100){
         errores.push('El nombre de la empresa no debe exceder los 100 caracteres.');
     }
 
     // Validación de la descripción
-    if(producto.description.length > 250){
+    if(post.description.length > 250){
         errores.push('La descripción no debe exceder los 250 caracteres.');
+    }
+
+    return errores;
+}
+
+function validarRegistro(usuario) {
+    var errores = [];
+
+    // Validación de username
+    if (!usuario.username || usuario.username.trim() === "") {
+        errores.push('El nombre de usuario es obligatorio.');
+    }
+
+    // Validación de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!usuario.email || !emailRegex.test(usuario.email)) {
+        errores.push('Se necesita un email válido.');
+    }
+
+    // Validación de password
+    if (usuario.password.length < 8) {
+        errores.push('La contraseña debe ser de al menos 8 caracteres.');
+    }
+
+    if (!/[a-z]/i.test(usuario.password)) {
+        errores.push('La contraseña debe incluir al menos una letra.');
+    }
+
+    if (!/[0-9]/.test(usuario.password)) {
+        errores.push('La contraseña debe incluir al menos un número.');
+    }
+
+    // Validación de password-confirm
+    if (usuario.password !== usuario.confirm) {
+        errores.push('Las contraseñas deben coincidir.');
     }
 
     return errores;

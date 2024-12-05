@@ -11,7 +11,7 @@ class Create extends DataBase {
     }
 
     public function add($jsonOBJ) {
-        // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
+        // SE OBTIENE LA INFORMACIÓN DEL POST ENVIADA POR EL CLIENTE
         $this->data = array(
             'status'  => 'error',
             'message' => 'Ya existe un post con ese nombre'
@@ -39,7 +39,7 @@ class Create extends DataBase {
     }
 
     public function addBookmark($jsonOBJ) {
-        // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
+        // SE OBTIENE LA INFORMACIÓN DEL POST ENVIADA POR EL CLIENTE
         $this->data = array(
             'status'  => 'error',
             'message' => 'El post ya está guardado'
@@ -71,5 +71,5 @@ class Create extends DataBase {
     }
 }
 
-//$productos = new Productos();
+//$posts = new posts();
 ?>
