@@ -417,6 +417,24 @@ $(document).ready(function(){
         botonAddEdit();
     });
 
+    $('#title').on('focus keyup',function(){
+        let element = $('#title').val().trim();
+        if(!element || element.length > 100){
+            $('#title').css('border', '2px solid red');
+        }else{
+            $('#title').css('border', '2px solid green');
+            }
+    });
+
+    $('#company').on('focus keyup',function(){
+        let element = $('#company').val().trim();
+        if(!element || element.length > 100){
+            $('#company').css('border', '2px solid red');
+        }else{
+            $('#company').css('border', '2px solid green');
+            }
+    });
+
     $('#post-form').submit(function(e){
         e.preventDefault();
         console.log(edit);
