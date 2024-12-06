@@ -61,12 +61,11 @@ $(document).ready(function(){
 
     // Not bookmarked post
     
-    $(document).ready(function() {
+
         // Al hacer clic en el icono de filtro, mostrar u ocultar la lista de checkboxes
         $('#filter-icon').click(function() {
             $('#checkboxList').toggle(); // Cambia el estado de visibilidad
         });
-    });
     
     $('.checkbox').on('change', function() {
         listarPostsInicio();  
@@ -254,7 +253,7 @@ $('#cancel').click(function() {
                         let postGrade = parseInt(post.grade);
                         if (selectedGrades.includes(postGrade)) {
                             template += `
-                                <div post-id="${post.id}"class="card bg-secondary mb-3" style="max-width: 31%;">
+                                <div post-id="${post.id}"class="card bg-dark-subtle mb-3" style="max-width: 31%;">
                                     <div class="card-header ">
                                         <h4 class="card-title">${post.title}</h4>
                                     </div>
@@ -316,7 +315,7 @@ $('#cancel').click(function() {
                         let postGrade = parseInt(post.grade);
                         if (selectedGrades.includes(postGrade)) {
                             template += `
-                                <div post-id="${post.id}"class="card bg-secondary mb-3" style="max-width: 31%;">
+                                <div post-id="${post.id}"class="card bg-dark-subtle mb-3" style="max-width: 31%;">
                                     <div class="card-header ">
                                         <h4 class="card-title">${post.title}</h4>
                                     </div>
@@ -525,10 +524,9 @@ $('#cancel').click(function() {
 				gradeIn.value = post.grade;
 				form.appendChild(gradeIn);
 
-				var descIn = document.createElement("input");
-                descIn.type = 'text';
+				var descIn = document.createElement("textarea");
                 descIn.name = 'description';
-                descIn.value = post.description;
+                descIn.textContent = post.description;
                 form.appendChild(descIn);   	
 
                 form.method = 'POST';
@@ -602,7 +600,7 @@ $('#cancel').click(function() {
 
     // Enviar cambios de perfil
     $('#editProfileForm').submit(function(e) {
-        e.preventDefault();  // Evitar el envío por defecto del formulario
+        e.preventDefault(); 
         var formData = new FormData();
         var file = $('#fileImg')[0].files[0];
         if (file) {
@@ -613,8 +611,8 @@ $('#cancel').click(function() {
             formData.append('bio', desc);
         }
         formData.append('id', currentuser);
-        console.log("id: " + formData.get('id'));  // Muestra el ID
-        console.log("bio: " + formData.get('bio'));  // Muestra la bio
+        console.log("id: " + formData.get('id'));
+        console.log("bio: " + formData.get('bio')); 
         console.log("image: " + (file ? file.name : "No se ha seleccionado imagen"));
         $.ajax({
             url: '../../backend/user-set.php',
@@ -623,7 +621,9 @@ $('#cancel').click(function() {
             contentType: false,
             processData: false,
             success: function(response){
-                console.log(response);
+                let respuesta = JSON.parse(response);
+                console.log(respuesta.message);
+                alert(respuesta.message);
                 getUser(currentuser);
             }
         });
@@ -655,6 +655,80 @@ $('#cancel').click(function() {
             $('#rating').text(average.toFixed(2)+"/5");
         }
     }
+    graficaStars();
+    function graficaStars(){
+        let star1;
+        let star2;
+        let star3;
+        let star4;
+        let star5;
+        $.ajax({
+            url: '../../backend/post-list.php',
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
+                // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                const posts = JSON.parse(response);
+            
+                // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
+                if(Object.keys(posts).length > 0) {
+                    // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
+                    star1 = 0;
+                    star2 = 0;
+                    star3 = 0;
+                    star4 = 0;
+                    star5 = 0;
+                    posts.forEach(post => {
+                        switch(parseInt(post.grade)){
+                            case 1:
+                                star1 += 1;
+                            break;
+                            case 2:
+                                star2 += 1;
+                            break;
+                            case 3:
+                                star3 += 1;
+                            break;
+                            case 4:
+                                star4 += 1;
+                            break;
+                            case 5:
+                                star5 += 1;
+                            break;
+                            default:
+                                break;
+                        }
+                    });
+                }
+
+                $('#grafica-stars').highcharts({
+                    title: {text: 'Relación Posts/Calificación'},
+                    xAxis: {categories:['1★','2★','3★','4★','5★']},
+                    yAxis: {title: 'Posts %', plotLines:[{value: 0, width: 1, color: '#808070'}]},
+                    tooltip: {valueSuffix: ' posts'},
+                    legend: {layout: 'vertical', align: 'right', verticalAlign: 'middle', borderWidth: 0},
+                    accessibility: { enabled: false },
+                    series: [{
+                        type: 'column', 
+                        name: '', 
+                        data: [star1,star2,star3,star4,star5],
+                        colorByPoint: true,
+                        colors: ['#de1313', '#de8313', '#ecb428', '#fdff6e', '#93ea50']
+                    }]
+                });
+
+            }
+        });
+    }
+
+    $('.show-sidebar').on('click', function () {
+        $('#sidebar').toggleClass('show'); 
+        
+        $('#content').toggleClass('sidebar-visible');
+    });
+
+    
+
 });
 
 function validarPost(post) {

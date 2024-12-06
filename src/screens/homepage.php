@@ -36,8 +36,8 @@ session_start();
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
-            <div class="navbar-icon mx-2">
-                <i class="fa-solid fa-filter" id="filter-icon"></i>
+            <div class="mx-2">
+                <i class="navbar-icon fa-solid fa-filter" id="filter-icon"></i>
                 <div id="checkboxList" style="display: none;">
                     <ul>
                         <li><input type="checkbox" class="checkbox" checked>★</li>
@@ -53,12 +53,23 @@ session_start();
                 <div id="current-user" data-id-user="<?php echo $_SESSION['user_id']; ?>"></div>
             </div>
             <div class="navbar-icon mx-2">
-                <a href="index.php"><i class="fa-solid fa-circle-info"></i></a>
+                <i class="show-sidebar fa-solid fa-chart-bar"></i>
             </div>
+            <!--<div class="navbar-icon mx-2">
+                <a href="index.php"><i class="fa-solid fa-circle-info"></i></a>
+            </div>-->
         </nav>
     </div>  
     
-    <div class="pretty-bg mb-5">
+    <div id="sidebar" class="p-4">
+        <div>
+            <div class="navbar-icon mx-2 pb-4"><i class="show-sidebar fa-solid fa-chart-bar"></i></div>
+            <h3>Cantidad de posts por calificación</h3>
+            <div id="grafica-stars" class="pt-4" style="width: 600px; height: 400px;"></div>
+        </div>
+    </div>
+
+    <div id="content" class="main-content pretty-bg mb-5">
         <div class="welcome-tab w-100 d-flex flex-column">
             <!-- Info -->
             <div class="rating mt-5 w-100 d-flex flex-column justify-content-center align-items-center">
@@ -118,6 +129,8 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <!-- Lógica del Frontend -->
     <script src="../app.js"></script>
     

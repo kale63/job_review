@@ -94,7 +94,8 @@ p {
 .navbar-nav {
     display: flex;
     flex-direction: row;
-    gap: 15%; 
+    flex-wrap: nowrap;
+    gap: 10%; 
     align-items: center;
 }
 
@@ -102,6 +103,10 @@ p {
 .navbar-icon {
     cursor: pointer;
     transition: color 0.2s ease-in-out;
+}
+
+.navbar-icon:hover {
+    color: var(--green)!important;
 }
 
 a:hover {
@@ -456,3 +461,33 @@ textarea::placeholder {
 #checkboxList li input {
     margin-right: 10px;
 }
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: -650px; 
+    width: 650px;
+    height: 100%;
+    background-color: #f8f9fa;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: right 0.3s ease;
+    z-index: 1050;
+}
+
+#sidebar.show {
+    right: 0;
+}
+
+#show-sidebar {
+    cursor: pointer;
+}   
+
+#content {
+    transition: margin-right 0.3s ease; /* Animación para mover el contenido */
+}
+
+#content.sidebar-visible {
+    margin-right: 300px; /* Deja espacio para el sidebar */
+}
+
