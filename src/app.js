@@ -1,164 +1,102 @@
-// uploading images
-/*document.getElementById("fileImg").onchange = function() {
-    document.getElementById("edit-pic").src = URL.createObjectURL(fileImg.files[0]);
-
-    document.getElementById("cancel").style.visibility = "visible";
-    document.getElementById("confirm").style.visibility = "visible";
-
-    document.getElementById("upload").style.visibility = "hidden";
-}
-
-var userImage = document.getElementById('edit-pic').src;
-document.getElementById("cancel").onclick = function() {
-    document.getElementById("edit-pic").src = userImage;
-
-    document.getElementById("cancel").style.visibility = "hidden";
-    document.getElementById("confirm").style.visibility = "hidden";
-
-    document.getElementById("upload").style.visibility = "visible";
-}
-
-//eidtar post
-
-function editPost(postId) {
-    window.location.href = `edit-post.php?post_id=${postId}`;
-}
-
-//borrar post
-
-function confirmDelete(postId) {
-    const confirmation = confirm("¿Estás seguro de que deseas eliminar esta publicación?");
-    
-    if (confirmation) {
-        fetch(`delete-post.php`, { //o como se llame
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `post_id=${postId}`
-        })
-        .then(response => {
-            if (response.ok) {
-                window.location.reload();
-            } else {
-                alert("Error al eliminar la publicación.");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("Hubo un problema al intentar eliminar la publicación.");
-        });
-    }
-}*/
-
 $(document).ready(function(){
 
-    // Active search bar
-    /*$('#search-icon').on('click', function () {
-        $('#search-bar').show();
-        $('#search-icon').hide();
-    });*/
-
-    // Not bookmarked post
-    
-
-        // Al hacer clic en el icono de filtro, mostrar u ocultar la lista de checkboxes
-        $('#filter-icon').click(function() {
-            $('#checkboxList').toggle(); // Cambia el estado de visibilidad
-        });
+    // Al hacer clic en el icono de filtro, mostrar u ocultar la lista de checkboxes
+    $('#filter-icon').click(function() {
+        $('#checkboxList').toggle(); 
+    });
     
     $('.checkbox').on('change', function() {
         listarPostsInicio();  
     });
 
     $('#error-login').hide();
-//let stars = document.getElementsByClassName("star-rating");
-let stars = $(".star-rating");
-//let output = document.getElementById("output");
-let rating;
-let sumGrades;
-let average = 0;
-let sumPosts;
-let postBookmarked;
+    //let stars = document.getElementsByClassName("star-rating");
+    let stars = $(".star-rating");
+    //let output = document.getElementById("output");
+    let rating;
+    let sumGrades;
+    let average = 0;
+    let sumPosts;
+    let postBookmarked;
 
-if($('#grade-post').val()){
-    rating = $('#grade-post').val();
-}else{
-    rating = 1;
-}
-
-let isthere = $('#postId').val();
-let edit;
-if(isthere == ''){
-    edit = false;
-}else{
-    edit = true;
-}
-
-let currentuser = $('#current-user').data('id-user');
-console.log(currentuser);
-
-stars.click(function() {
-    var index = $(this).index(); 
-    gfg(index);
-});
-
-function gfg(n) {
-    remove();
-    let cls = '';
-    for (let i = 0; i < n; i++) {
-        if (n == 1) cls = "one";
-        else if (n == 2) cls = "two";
-        else if (n == 3) cls = "three";
-        else if (n == 4) cls = "four";
-        else if (n == 5) cls = "five";
-        stars[i].className = "star-rating " + cls;
-    }
-
-    rating = n;
-    //output.innerText = "Rating is: " + rating + "/5";
-}
-
-function remove() {
-    let i = 0;
-    while (i < 5) {
-        stars[i].className = "star-rating";
-        i++;
-    }
-}
-
-botonAddEdit();
-getUser(currentuser);
-
-function botonAddEdit(){
-    console.log(edit);
-    if(edit){
-        $('#add-edit').text('Editar');
+    if($('#grade-post').val()){
+        rating = $('#grade-post').val();
     }else{
-        $('#add-edit').text('Publicar');
+        rating = 1;
     }
-}
-// Profile
 
-// uploading images
-$('#fileImg').on('change', function() {
-    $("#edit-pic").attr("src", URL.createObjectURL(fileImg.files[0]));
+    let isthere = $('#postId').val();
+    let edit;
+    if(isthere == ''){
+        edit = false;
+    }else{
+        edit = true;
+    }
 
-    $("#cancel").show();
-    $("#confirm").show();
+    let currentuser = $('#current-user').data('id-user');
+    console.log(currentuser);
 
-    $("#upload").hide();
+    stars.click(function() {
+        var index = $(this).index(); 
+        gfg(index);
+    });
 
-});
+    function gfg(n) {
+        remove();
+        let cls = '';
+        for (let i = 0; i < n; i++) {
+            if (n == 1) cls = "one";
+            else if (n == 2) cls = "two";
+            else if (n == 3) cls = "three";
+            else if (n == 4) cls = "four";
+            else if (n == 5) cls = "five";
+            stars[i].className = "star-rating " + cls;
+        }
+
+        rating = n;
+        //output.innerText = "Rating is: " + rating + "/5";
+    }
+
+    function remove() {
+        let i = 0;
+        while (i < 5) {
+            stars[i].className = "star-rating";
+            i++;
+        }
+    }
+
+    botonAddEdit();
+    getUser(currentuser);
+
+    function botonAddEdit(){
+        console.log(edit);
+        if(edit){
+            $('#add-edit').text('Editar');
+        }else{
+            $('#add-edit').text('Publicar');
+        }
+    }
+    // Profile
+
+    // uploading images
+    $('#fileImg').on('change', function() {
+        $("#edit-pic").attr("src", URL.createObjectURL(fileImg.files[0]));
+
+        $("#cancel").show();
+        $("#confirm").show();
+
+        $("#upload").hide();
+
+    });
 
 
-var userImage = $('#edit-pic').attr('src');
+    var userImage = $('#edit-pic').attr('src');
 
-$('#cancel').click(function() {
-    $('#edit-pic').attr('src', userImage);
-    $('#cancel, #confirm').hide();
-    $('#upload').show();
-});
+    $('#cancel').click(function() {
+        $('#edit-pic').attr('src', userImage);
+        $('#cancel, #confirm').hide();
+        $('#upload').show();
+    });
     listarPostsGuardados();
     listarPostsInicio();
     listarPostsPerfil();
@@ -221,6 +159,44 @@ $('#cancel').click(function() {
             }
         });
 
+    });
+
+    $('#username').keyup(function(e){
+        if($('#username').val()){
+            let verify = $('#username').val();
+            $.ajax({
+                url: '../../backend/user-username.php',
+                type: 'GET',
+                //data: {search: search} es lo mismo que
+                data: { verify },
+                success: function(response){
+                    let username = JSON.parse(response);
+                        let message = `
+                            <em>${username.message}</em>
+                        `;
+                        $('#signup-status').html(message);
+                }
+            });
+        }
+    });
+
+    $('#email').keyup(function(){
+        if($('#email').val()){
+            let verify = $('#email').val();
+            $.ajax({
+                url: '../../backend/user-email.php',
+                type: 'GET',
+                //data: {search: search} es lo mismo que
+                data: { verify },
+                success: function(response){
+                    let username = JSON.parse(response);
+                        let message = `
+                            <em>${username.message}</em>
+                        `;
+                        $('#signup-status').html(message);
+                }
+            });
+        }
     });
 
     $('#search-icon').keyup(function(e){

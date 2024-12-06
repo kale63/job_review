@@ -124,4 +124,29 @@ class User extends Database{
             }
         }
     }
+
+    public function verifyUE($campo, $val) {
+        $this->data = array(
+            'status'  => 'succes',
+            'message' => "{$campo} sin registrar"
+        );
+        if( isset($val) ) {
+            // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
+            $sql = "SELECT * FROM user WHERE {$campo} = '{$val}'";
+            if ( $result = $this->conexion->query($sql) ) {
+                // SE OBTIENEN LOS RESULTADOS
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+                if(count($rows) > 0) {
+                    $this->data['status'] = 'error';
+                    $this->data['message'] = "Ese {$campo} ya está registrado";
+                }
+                $result->free();
+            } else {
+                die('Query Error: '.mysqli_error($this->conexion));
+            }
+            $this->conexion->close();
+        }
+    }
+
 }
